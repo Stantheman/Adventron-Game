@@ -3,7 +3,7 @@ import java.awt.*;
 import java.io.*;
 
 import javax.imageio.ImageIO;
-
+//GIT!
 public class Adventron extends Applet implements Runnable
 {	
 	private Image dbImage;
