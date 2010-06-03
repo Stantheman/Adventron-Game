@@ -71,23 +71,21 @@ public class Adventron extends Applet implements Runnable
 	{ 
 		// set color
 		map.mapLevel(g);
-	/*	try{
-		pImage = ImageIO.read(new File("C:\\Users\\stan\\Desktop\\player.png"));
-		}catch (IOException e){}*/
-	
+		g.setColor(Color.yellow);
+		
 		g.drawImage(map.image, 0, 0, null);
 		g.setColor (Color.white);
-		//g.drawImage(pImage, player.getPosition().x, player.getPosition().y, null);
-		//g.drawI
-	    g.drawString("$", player.getPosition().x, player.getPosition().y);
+		
+		g.drawRect(player.getPosition().x, player.getPosition().y, (int)player.PLAYER_WIDTH, (int)player.PLAYER_HEIGHT);
 
-		g.drawString("!!", m1.getPosition().x, m1.getPosition().y);
+		//g.drawString("!!", m1.getPosition().x, m1.getPosition().y);
+		g.drawRect(m1.getPosition().x, m1.getPosition().y, (int)m1.MONSTER_WIDTH, (int)m1.MONSTER_HEIGHT);
+		
+		g.setColor(Color.red);
 		for (int i=0; i<player.getBullets().size(); i++)
 		{
-			g.setColor(Color.red);
 			g.drawRect(player.getBullets().get(i).getCoordinate().x, player.getBullets().get(i).getCoordinate().y, 1, 1);
 		}
-		g.setColor(Color.yellow);
 	}
 	
 	/** Update - Method, implements double buffering */
@@ -124,24 +122,21 @@ public class Adventron extends Applet implements Runnable
 		// user presses left cursor key 
 		if (key == Event.LEFT)
 		{
-			player.changePosition(Player.PLAYER_LEFT);
-			player.setDirection(Player.BULLET_LEFT);
+			//player.changePosition(Player.PLAYER_LEFT);
+			player.moveLeft(map);
 		}
 		// user presses right cursor key 
 		else if (key == Event.RIGHT)
 		{
-			player.changePosition(Player.PLAYER_RIGHT);
-			player.setDirection(Player.BULLET_RIGHT);
+			player.moveRight(map);
 		}		
 		else if (key == Event.UP)
 		{
-			player.changePosition(Player.PLAYER_UP);
-			player.setDirection(Player.BULLET_UP);
+			player.moveUp(map);
 		}
 		else if (key == Event.DOWN)
 		{
-			player.changePosition(Player.PLAYER_DOWN);
-			player.setDirection(Player.BULLET_DOWN);
+			player.moveDown(map);
 		}
 		// user presses space bar (value = 32!)
 		if (key == 32)
@@ -157,29 +152,6 @@ public class Adventron extends Applet implements Runnable
 	
 		// DON'T FORGET (although it has no meaning here) 
 		return true;
-	}
-	
-	public void readFile(String filename)
-	{
-	   try{
-		    // Open the file that is the first 
-		    // command line parameter
-		    FileInputStream fstream = new FileInputStream(filename);
-		    // Get the object of DataInputStream
-		    DataInputStream in = new DataInputStream(fstream);
-		    BufferedReader br = new BufferedReader(new InputStreamReader(in));
-		    
-		    String strLine;
-		    //Read File Line By Line
-		    while ((strLine = br.readLine()) != null)   {
-		      // Print the content on the console
-		      System.out.println (strLine);
-		    }
-		    //Close the input stream
-		    in.close();
-		    }catch (Exception e){//Catch exception if any
-		      System.err.println("Error: " + e.getMessage());
-		    }
 	}
 
 }
