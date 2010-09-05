@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Levels</name>
+			<type>2</type>
+			<location>/Users/stanschwertly/adventron/Levels</location>
+		</link>
+	</linkedResources>
 </projectDescription>

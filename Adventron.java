@@ -25,7 +25,7 @@ public class Adventron extends Applet implements Runnable
 		Thread th = new Thread (this);
 		// start this thread
 		th.start ();
-		map.readLevel("C:\\Users\\stan\\Documents\\Visual Studio Projects\\Adventron\\Level 0.dat");
+		map.readLevel("Levels//Level 0.dat");
 	}
 	public void stop() { }
 	
