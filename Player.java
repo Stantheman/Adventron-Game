@@ -27,9 +27,6 @@ public class Player
 	private Point direction;
 	private int quadrant;
 	
-	//wtf. need to name these things better. ns it's a box.
-	private Rectangle box;
-	
 	public Player()
 	{	
 		position = new Point();
@@ -37,8 +34,6 @@ public class Player
 		direction = Player.BULLET_UP;
 		position.setLocation(100, 100);
 		quadrant = Map.TOP_LEFT;
-		
-		box = new Rectangle(position.x, position.y, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
 	
 	public Point getPosition()
@@ -133,5 +128,4 @@ public class Player
 			quadrant = Map.TOP_RIGHT;
 		else quadrant = Map.BOTTOM_RIGHT;
 	}
-		
 }

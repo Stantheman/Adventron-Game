@@ -33,8 +33,10 @@ public class Bullet
 		return position;
 	}
 	
-	public void changePosition(int xRight, int yDown, Map map)
+	public void changePosition(Map map)
 	{
+		// check where it's going
+		
 		Rectangle temp = new Rectangle(
 				position.x + direction.x, 
 				position.y + direction.y,
@@ -47,8 +49,9 @@ public class Bullet
 				return;
 			}
 		}
-		position.x+=xRight;
-		position.y+=yDown;
+		
+		position.x+=direction.x;
+		position.y+=direction.y;
 		determineQuadrant();
 	}
 	

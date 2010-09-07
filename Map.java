@@ -23,7 +23,6 @@ public class Map
     
 	public String[] rows;
 	public BufferedImage image;
-	private boolean mapHasBeenMade;
 	char[][] mapData; //the old dos box was this size?
 	private ArrayList<Rectangle> walls[];
 	
@@ -31,7 +30,6 @@ public class Map
 	{
 		rows = new String[25];
 		image = new BufferedImage(MAP_WIDTH,MAP_HEIGHT, BufferedImage.TYPE_INT_RGB);
-		mapHasBeenMade=false;
 		mapData = new char[80][80];
 		
 		walls = new ArrayList[4];
@@ -82,8 +80,9 @@ public class Map
 		int lastWall[] = {0,0,0,0};
 		int tempQuad = 0; //Where will the wall be placed?
 		
-		//this is going to be ugly. loop through and determine
-		//which quadrant the wall should be in
+		/* loop through and look for walls. if a wall is found,
+		 * figure out which quadrant it's in and put it there
+		*/
 		for (int i=0; i <rows.length; i++)
 		{
 			for (int j=0; j<rows[i].length(); j++)
