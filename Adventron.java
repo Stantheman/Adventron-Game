@@ -58,7 +58,13 @@ public class Adventron extends Applet implements Runnable
 			for (int i=0; i<player.getBullets().size(); i++)
 			{
 				player.getBullets().get(i).changePosition(
-						player.getBullets().get(i).getDirection().x, player.getBullets().get(i).getDirection().y);
+						player.getBullets().get(i).getDirection().x, player.getBullets().get(i).getDirection().y, map);
+				if (player.getBullets().get(i).getQuadrant()==Map.OUT_OF_BOUNDS)
+				{
+					player.getBullets().remove(i);
+					i--;
+					continue;
+				}
 			}
 			
 			
@@ -98,12 +104,6 @@ public class Adventron extends Applet implements Runnable
 		g.setColor(Color.red);
 		for (int i=0; i<player.getBullets().size(); i++)
 		{
-			if (player.getBullets().get(i).getQuadrant()==Map.OUT_OF_BOUNDS)
-			{
-				player.getBullets().remove(i);
-				i--;
-				continue;
-			}
 			g.drawRect(player.getBullets().get(i).getPosition().x, player.getBullets().get(i).getPosition().y, 1, 1);
 		}
 	}

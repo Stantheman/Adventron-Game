@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.awt.Rectangle;
 
 public class Bullet
 {
@@ -32,12 +33,23 @@ public class Bullet
 		return position;
 	}
 	
-	public void changePosition(int xRight, int yDown)
+	public void changePosition(int xRight, int yDown, Map map)
 	{
+		Rectangle temp = new Rectangle(
+				position.x + direction.x, 
+				position.y + direction.y,
+				1,1); 
+		for (int i=0; i<map.getWalls(quadrant).size(); i++)
+		{
+			if (temp.intersects(map.getWalls(quadrant).get(i)))
+			{
+				quadrant = Map.OUT_OF_BOUNDS;
+				return;
+			}
+		}
 		position.x+=xRight;
 		position.y+=yDown;
 		determineQuadrant();
-		System.out.println("this bullet is in quadrant: " + quadrant);
 	}
 	
 	public Point getDirection()
