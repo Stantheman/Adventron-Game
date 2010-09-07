@@ -22,7 +22,7 @@ public class Map
 	public String[] rows;
 	public BufferedImage image;
 	private boolean mapHasBeenMade;
-	char[][] mapData; //trying to remember why this is here :/
+	char[][] mapData; //the old dos box was this size?
 	private ArrayList<Rectangle> walls;
 	
 	public Map()
@@ -39,7 +39,7 @@ public class Map
 		return walls;
 	}
 	
-	public void readLevel(String filename)
+	public void readLevel(String filename, Graphics g)
 	{
 		 try
 		 {
@@ -73,12 +73,8 @@ public class Map
 		      System.err.println("Error: " + e.getMessage());
 		      System.exit(0);
 		 }
-	}
-	
-	public boolean mapLevel(Graphics g)
-	{
-		if (mapHasBeenMade) return false;
-		
+		 
+		//Level is read. process it.
 		int spaceBelowScreen = 20;
 		
 		for (int i=0; i <rows.length; i++)
@@ -98,17 +94,13 @@ public class Map
 		
 		//maybe make this part of the code above?
 		// MAKE THIS PART OF THE LOOP ABOVE, create g ahead of time and do it there.
-		// make a rectangle class with just ints
-		
+	
 		g.setColor(Color.yellow);
 		spaceBelowScreen = 20;
 		for (int i=0; i<walls.size(); i++)
 		{
 			g.drawRect(walls.get(i).x, walls.get(i).y, walls.get(i).width, walls.get(i).height);
 		}
-		
-		mapHasBeenMade=true;
-		return true;
-		
 	}
+
 }

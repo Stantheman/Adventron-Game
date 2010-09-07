@@ -10,7 +10,14 @@ import javax.imageio.ImageIO;
  * - break map into four quadrants to ease collision detection
  * - investigate slick2d for graphics
  * - figure out stupid applet stuff
- * - flip bits for movement  rather than +=movement
+ * - flip bits for movement  rather than +=movement (less clunky)
+ * - FIGURE OUT APPLET crap. signed? jars? bs.
+ * - java enums for all the public static variables?
+ * - the worst part about coming back to a porting project is
+ *   trying to remember why you included variables. Did I do 
+ *   this to stay in line with my old code? Unused variables?
+ *   Joel would cry.
+ * - mapLevel is a WEIRD function. why did I do that?
  */
 public class Adventron extends Applet implements Runnable
 {	
@@ -33,7 +40,7 @@ public class Adventron extends Applet implements Runnable
 		Thread th = new Thread (this);
 		// start this thread
 		th.start ();
-		map.readLevel("Levels//Level 0.dat");
+		map.readLevel("Levels//Level 0.dat", dbg);
 	}
 	public void stop() { }
 	
@@ -78,7 +85,6 @@ public class Adventron extends Applet implements Runnable
 	public void paint (Graphics g) 
 	{ 
 		// set color
-		map.mapLevel(g);
 		g.setColor(Color.yellow);
 		
 		g.drawImage(map.image, 0, 0, null);
