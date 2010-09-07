@@ -41,41 +41,38 @@ public class Map
 	
 	public void readLevel(String filename, Graphics g)
 	{
-		 try
-		 {
-		    // Open the file that is the first 
-		    // command line parameter
-		    FileInputStream fstream = new FileInputStream(filename);
-		    // Get the object of DataInputStream
-		    DataInputStream in = new DataInputStream(fstream);
-		    BufferedReader br = new BufferedReader(new InputStreamReader(in));
-		    
-		    String strLine;
-		    strLine=br.readLine();
-		   
-		    int a =0;
-		    
-		    //Read File Line By Line
-		    while ((strLine = br.readLine()) != null)   
-		    {
-		      // Print the content on the console
-		      rows[a] = strLine;
-		      //System.out.println (rows[a]);
-		      
-		      a++;
-		   
-		    }
-		    //Close the input stream
-		    in.close();
-		 }
-		 catch (Exception e)
-		 {//Catch exception if any
-		      System.err.println("Error: " + e.getMessage());
-		      System.exit(0);
-		 }
-		 
-		//Level is read. process it.
+		// Read in the level
+		try
+		{
+			FileInputStream fstream = new FileInputStream(filename);
+			DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine = br.readLine();
+			int index = 0;
+			
+			while ((strLine = br.readLine()) != null)   
+			{
+				rows[index] = strLine;
+				index++;
+			}
+			
+			in.close();
+		}
+		
+		catch (Exception e)
+		{
+			System.err.println("Error: " + e.getMessage());
+			System.exit(0);
+		}
+		// Level is read. process it.
+		
+		// java reminder for me. This creates the background image
+		g = image.createGraphics();
+		g.setColor(Color.yellow);  // wall color. static variable?
+		
+		// Spacer for walls. Increases as lines of wall continue
 		int spaceBelowScreen = 20;
+		int lastWall = 0;
 		
 		for (int i=0; i <rows.length; i++)
 		{
@@ -83,24 +80,17 @@ public class Map
 			{
 				if (rows[i].charAt(j)=='#')
 				{
+					//places the wall in the right spot on the map
 					walls.add(new Rectangle((j*10), spaceBelowScreen, 10, 10));
+					g.drawRect(
+							walls.get(lastWall).x, 
+							walls.get(lastWall).y, 
+							walls.get(lastWall).width, 
+							walls.get(lastWall).height);
+					lastWall++;
 				}
 			}
 			spaceBelowScreen+=10;
 		}
-		
-		//create the background image
-		g = image.createGraphics();
-		
-		//maybe make this part of the code above?
-		// MAKE THIS PART OF THE LOOP ABOVE, create g ahead of time and do it there.
-	
-		g.setColor(Color.yellow);
-		spaceBelowScreen = 20;
-		for (int i=0; i<walls.size(); i++)
-		{
-			g.drawRect(walls.get(i).x, walls.get(i).y, walls.get(i).width, walls.get(i).height);
-		}
 	}
-
 }
