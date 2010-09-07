@@ -3,7 +3,15 @@ import java.awt.*;
 import java.io.*;
 
 import javax.imageio.ImageIO;
-//GIT!
+
+/*
+ * Todo list
+ * 
+ * - break map into four quadrants to ease collision detection
+ * - investigate slick2d for graphics
+ * - figure out stupid applet stuff
+ * - flip bits for movement  rather than +=movement
+ */
 public class Adventron extends Applet implements Runnable
 {	
 	private Image dbImage;
