@@ -102,16 +102,6 @@ public class Map
 			}
 			spaceBelowScreen+=10;
 		}
-		
-		//temporary
-		int total=0;
-		for (int i=0; i<4; i++)
-		{
-			System.out.println("Walls[" + i + "]'s size: " + walls[i].size());
-			total+=walls[i].size();
-		}
-		System.out.println("Total size is: " + total);
-		
 	}
 	
 	private int determineQuadrant(int x, int y)

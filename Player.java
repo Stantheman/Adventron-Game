@@ -36,7 +36,7 @@ public class Player
 		bullets = new ArrayList<Bullet>();
 		direction = Player.BULLET_UP;
 		position.setLocation(100, 100);
-		quadrant = Map.TOP_RIGHT;
+		quadrant = Map.TOP_LEFT;
 		
 		box = new Rectangle(position.x, position.y, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
@@ -77,6 +77,7 @@ public class Player
 		}
 		changePosition(new Point(-5,0));
 		setDirection(Player.BULLET_LEFT);
+		determineQuadrant();
 	}
 	
 	public void moveRight(Map map)
@@ -89,7 +90,7 @@ public class Player
 		}
 		changePosition(new Point(5,0));
 		setDirection(Player.BULLET_RIGHT);
-	//	System.out.println("x position: " + position.x + "\t\t y position: " + position.y);
+		determineQuadrant();
 	}
 	
 	public void moveUp(Map map)
@@ -102,6 +103,7 @@ public class Player
 		}
 		changePosition(new Point(0,-5));
 		setDirection(Player.BULLET_UP);
+		determineQuadrant();
 	}
 	
 	public void moveDown(Map map)
@@ -114,6 +116,7 @@ public class Player
 		}
 		changePosition(new Point(0,5));
 		setDirection(Player.BULLET_DOWN);
+		determineQuadrant();
 	}
 	
 	private void determineQuadrant()
