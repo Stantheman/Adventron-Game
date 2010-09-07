@@ -25,6 +25,9 @@ public class Player
 	private Point position;
 	private ArrayList<Bullet> bullets; 
 	private Point direction;
+	private int quadrant;
+	
+	//wtf. need to name these things better. ns it's a box.
 	private Rectangle box;
 	
 	public Player()
@@ -33,6 +36,7 @@ public class Player
 		bullets = new ArrayList<Bullet>();
 		direction = Player.BULLET_UP;
 		position.setLocation(100, 100);
+		quadrant = Map.TOP_RIGHT;
 		
 		box = new Rectangle(position.x, position.y, PLAYER_WIDTH, PLAYER_HEIGHT);
 	}
@@ -85,6 +89,7 @@ public class Player
 		}
 		changePosition(new Point(5,0));
 		setDirection(Player.BULLET_RIGHT);
+	//	System.out.println("x position: " + position.x + "\t\t y position: " + position.y);
 	}
 	
 	public void moveUp(Map map)
@@ -111,4 +116,19 @@ public class Player
 		setDirection(Player.BULLET_DOWN);
 	}
 	
+	private void determineQuadrant()
+	{
+		// Optimize this later by precalculating width/2
+		if (position.x<Map.MAP_WIDTH/2)
+		{
+			if (position.y < Map.MAP_HEIGHT/2)
+				quadrant = Map.TOP_LEFT;
+			else
+				quadrant = Map.BOTTOM_LEFT;
+		}
+		else if (position.y < Map.MAP_HEIGHT/2)
+			quadrant = Map.TOP_RIGHT;
+		else quadrant = Map.BOTTOM_RIGHT;
+	}
+		
 }

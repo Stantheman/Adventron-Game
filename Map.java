@@ -11,16 +11,24 @@ import java.util.ArrayList;
 
 public class Map
 {
+	public static final int MAP_WIDTH = 800;
+    public static final int MAP_HEIGHT = 400;
+    
+    public static final int TOP_LEFT = 1;
+    public static final int TOP_RIGHT =2;
+    public static final int BOTTOM_LEFT = 3;
+    public static final int BOTTOM_RIGHT = 4;
+    
 	public String[] rows;
 	public BufferedImage image;
 	private boolean mapHasBeenMade;
-	char[][] mapData;
+	char[][] mapData; //trying to remember why this is here :/
 	private ArrayList<Rectangle> walls;
 	
 	public Map()
 	{
 		rows = new String[25];
-		image = new BufferedImage(800,400, BufferedImage.TYPE_INT_RGB);
+		image = new BufferedImage(MAP_WIDTH,MAP_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		mapHasBeenMade=false;
 		mapData = new char[80][80];
 		walls = new ArrayList<Rectangle>();
