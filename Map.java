@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -14,16 +15,16 @@ public class Map
 	public static final int MAP_WIDTH = 800;
     public static final int MAP_HEIGHT = 400;
     
-    public static final int TOP_LEFT = 1;
-    public static final int TOP_RIGHT =2;
-    public static final int BOTTOM_LEFT = 3;
-    public static final int BOTTOM_RIGHT = 4;
+    public static final int TOP_LEFT = 0;
+    public static final int TOP_RIGHT =1;
+    public static final int BOTTOM_LEFT = 2;
+    public static final int BOTTOM_RIGHT = 3;
     
 	public String[] rows;
 	public BufferedImage image;
 	private boolean mapHasBeenMade;
 	char[][] mapData; //the old dos box was this size?
-	private ArrayList<Rectangle> walls;
+	private ArrayList<Rectangle> walls[];
 	
 	public Map()
 	{
@@ -31,12 +32,17 @@ public class Map
 		image = new BufferedImage(MAP_WIDTH,MAP_HEIGHT, BufferedImage.TYPE_INT_RGB);
 		mapHasBeenMade=false;
 		mapData = new char[80][80];
-		walls = new ArrayList<Rectangle>();
+		
+		walls = new ArrayList[4];
+		for (int i=0; i<4; i++)
+		{
+			walls[i] = new ArrayList<Rectangle>();
+		}
 	}
 	
-	public ArrayList<Rectangle> getWalls()
+	public ArrayList<Rectangle> getWalls(int whichWall)
 	{
-		return walls;
+		return walls[whichWall];
 	}
 	
 	public void readLevel(String filename, Graphics g)
@@ -72,25 +78,53 @@ public class Map
 		
 		// Spacer for walls. Increases as lines of wall continue
 		int spaceBelowScreen = 20;
-		int lastWall = 0;
+		int lastWall[] = {0,0,0,0};
+		int tempQuad = 0; //Where will the wall be placed?
 		
+		//this is going to be ugly. loop through and determine
+		//which quadrant the wall should be in
 		for (int i=0; i <rows.length; i++)
 		{
 			for (int j=0; j<rows[i].length(); j++)
 			{
 				if (rows[i].charAt(j)=='#')
 				{
+					tempQuad = determineQuadrant( (j*10), spaceBelowScreen);
 					//places the wall in the right spot on the map
-					walls.add(new Rectangle((j*10), spaceBelowScreen, 10, 10));
+					walls[tempQuad].add(new Rectangle((j*10), spaceBelowScreen, 10, 10));
 					g.drawRect(
-							walls.get(lastWall).x, 
-							walls.get(lastWall).y, 
-							walls.get(lastWall).width, 
-							walls.get(lastWall).height);
-					lastWall++;
+							walls[tempQuad].get(lastWall[tempQuad]).x, 
+							walls[tempQuad].get(lastWall[tempQuad]).y, 
+							walls[tempQuad].get(lastWall[tempQuad]).width, 
+							walls[tempQuad].get(lastWall[tempQuad]).height);
+					lastWall[tempQuad]++;
 				}
 			}
 			spaceBelowScreen+=10;
 		}
+		
+		//temporary
+		int total=0;
+		for (int i=0; i<4; i++)
+		{
+			System.out.println("Walls[" + i + "]'s size: " + walls[i].size());
+			total+=walls[i].size();
+		}
+		System.out.println("Total size is: " + total);
+		
+	}
+	
+	private int determineQuadrant(int x, int y)
+	{
+		if (x<MAP_WIDTH/2)
+		{
+			if (y < MAP_HEIGHT/2)
+				return TOP_LEFT;
+			else
+				return BOTTOM_LEFT;
+		}
+		else if (y < MAP_HEIGHT/2)
+			return TOP_RIGHT;
+		else return BOTTOM_RIGHT;
 	}
 }

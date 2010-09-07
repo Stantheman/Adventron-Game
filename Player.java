@@ -70,9 +70,9 @@ public class Player
 	public void moveLeft(Map map)
 	{
 		Rectangle temp = new Rectangle(position.x-PLAYER_SPEED,position.y,PLAYER_WIDTH,PLAYER_HEIGHT);
-		for (int i=0; i<map.getWalls().size(); i++)
+		for (int i=0; i<map.getWalls(quadrant).size(); i++)
 		{
-			if (temp.intersects(map.getWalls().get(i)))
+			if (temp.intersects(map.getWalls(quadrant).get(i)))
 				return;
 		}
 		changePosition(new Point(-5,0));
@@ -82,9 +82,9 @@ public class Player
 	public void moveRight(Map map)
 	{
 		Rectangle temp = new Rectangle(position.x+PLAYER_SPEED,position.y,PLAYER_WIDTH,PLAYER_HEIGHT);
-		for (int i=0; i<map.getWalls().size(); i++)
+		for (int i=0; i<map.getWalls(quadrant).size(); i++)
 		{
-			if (temp.intersects(map.getWalls().get(i)))
+			if (temp.intersects(map.getWalls(quadrant).get(i)))
 				return;
 		}
 		changePosition(new Point(5,0));
@@ -95,9 +95,9 @@ public class Player
 	public void moveUp(Map map)
 	{
 		Rectangle temp = new Rectangle(position.x, position.y-PLAYER_SPEED,PLAYER_WIDTH,PLAYER_HEIGHT);
-		for (int i=0; i<map.getWalls().size(); i++)
+		for (int i=0; i<map.getWalls(quadrant).size(); i++)
 		{
-			if (temp.intersects(map.getWalls().get(i)))
+			if (temp.intersects(map.getWalls(quadrant).get(i)))
 				return;
 		}
 		changePosition(new Point(0,-5));
@@ -107,9 +107,9 @@ public class Player
 	public void moveDown(Map map)
 	{
 		Rectangle temp = new Rectangle(position.x,position.y+PLAYER_SPEED,PLAYER_WIDTH,PLAYER_HEIGHT);
-		for (int i=0; i<map.getWalls().size(); i++)
+		for (int i=0; i<map.getWalls(quadrant).size(); i++)
 		{
-			if (temp.intersects(map.getWalls().get(i)))
+			if (temp.intersects(map.getWalls(quadrant).get(i)))
 				return;
 		}
 		changePosition(new Point(0,5));
