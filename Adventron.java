@@ -1,8 +1,5 @@
 import java.applet.*;
 import java.awt.*;
-import java.io.*;
-
-import javax.imageio.ImageIO;
 
 /*
  * Todo list
@@ -12,6 +9,8 @@ import javax.imageio.ImageIO;
  * - flip bits for movement  rather than +=movement (less clunky)
  * - FIGURE OUT APPLET crap. signed? jars? bs.
  * - java enums for all the public static variables?
+ * - bullets kill monsters
+ * - monsters shoot and move normal and cankill
  * - the worst part about coming back to a porting project is
  *   trying to remember why you included variables. Did I do 
  *   this to stay in line with my old code? Unused variables?
@@ -21,8 +20,7 @@ public class Adventron extends Applet implements Runnable
 {	
 	private Image dbImage;
 	private Graphics dbg;
-	private Image pImage;
-	
+
 	private Player player = new Player();
 	private Monster m1 = new Monster();
 	private Map map = new Map();
