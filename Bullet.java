@@ -2,36 +2,42 @@ import java.awt.Point;
 
 public class Bullet
 {
-	private Point coordinate;
+	private Point position;
 	private Point direction;
+	private int quadrant;
 	
 	public Bullet()
 	{
-		coordinate = new Point();
-		direction = Player.BULLET_UP;
+		position = new Point();
+		direction = Player.BULLET_UP; //bullet up is default?
+		determineQuadrant();
 	}
 	
 	public Bullet(int x, int y)
 	{
-		coordinate = new Point(x,y);
+		position = new Point(x,y);
 		direction = Player.BULLET_UP;
+		determineQuadrant();
 	}
 	
 	public Bullet(int x, int y, Point d)
 	{
-		coordinate = new Point(x,y);
+		position = new Point(x,y);
 		direction = d;
+		determineQuadrant();
 	}
 	
-	public Point getCoordinate()
+	public Point getPosition()
 	{
-		return coordinate;
+		return position;
 	}
 	
-	public void changeCoordinate(int xRight, int yDown)
+	public void changePosition(int xRight, int yDown)
 	{
-		coordinate.x+=xRight;
-		coordinate.y+=yDown;
+		position.x+=xRight;
+		position.y+=yDown;
+		determineQuadrant();
+		System.out.println("this bullet is in quadrant: " + quadrant);
 	}
 	
 	public Point getDirection()
@@ -42,5 +48,34 @@ public class Bullet
 	public void setDirection(Point d)
 	{
 		direction=d;
+	}
+	
+	public int getQuadrant()
+	{
+		return quadrant;
+	}
+	
+	private void determineQuadrant()
+	{
+		//Is the bullet on the map?
+		if (    (position.x > Map.MAP_WIDTH) ||
+				(position.x < 0) ||
+				(position.y > Map.MAP_HEIGHT) ||
+				(position.y < 0) )
+		{
+			quadrant = Map.OUT_OF_BOUNDS;
+			return;
+		}
+		// Optimize this later by precalculating width/2
+		if (position.x<Map.MAP_WIDTH/2)
+		{
+			if (position.y < Map.MAP_HEIGHT/2)
+				quadrant = Map.TOP_LEFT;
+			else
+				quadrant = Map.BOTTOM_LEFT;
+		}
+		else if (position.y < Map.MAP_HEIGHT/2)
+			quadrant = Map.TOP_RIGHT;
+		else quadrant = Map.BOTTOM_RIGHT;
 	}
 }
