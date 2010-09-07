@@ -67,9 +67,9 @@ public class Adventron extends Applet implements Runnable
 				}
 			}
 			
-			
 			//update the monster. Random for now
-			m1.changePosition((int)Math.round(Math.random()), (int)Math.round(Math.random()));
+			m1.changePosition(map);
+			
 			// repaint the applet
 			repaint();
 		
