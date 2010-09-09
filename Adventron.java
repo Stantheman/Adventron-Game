@@ -15,6 +15,9 @@ import java.awt.*;
  *   trying to remember why you included variables. Did I do 
  *   this to stay in line with my old code? Unused variables?
  *   Joel would cry.
+ * - replace wall key for walls that are impossible to touch/
+ *   vanity (LEE!)
+ * - get github account for pretty releases (LEE)
  */
 public class Adventron extends Applet implements Runnable
 {	
