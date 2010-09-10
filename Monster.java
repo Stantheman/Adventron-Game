@@ -45,6 +45,8 @@ public class Monster
 		
 		position.x+=direction.x;
 		position.y+=direction.y;
+		if (Math.random()<.5) direction.y*=-1;
+		
 	}
 	
 	public ArrayList<Bullet> getBullets()
