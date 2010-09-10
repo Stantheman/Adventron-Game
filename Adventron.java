@@ -11,6 +11,13 @@ import java.awt.*;
  * - java enums for all the public static variables? global class?
  * - bullets kill monsters
  * - monsters shoot and move normal and cankill
+ * - the worst part about coming back to a porting project is
+ *   trying to remember why you included variables. Did I do 
+ *   this to stay in line with my old code? Unused variables?
+ *   Joel would cry.
+ * - replace wall key for walls that are impossible to touch/
+ *   vanity (LEE!)
+ * - get github account for pretty releases (LEE)
  */
 public class Adventron extends Applet implements Runnable
 {	
