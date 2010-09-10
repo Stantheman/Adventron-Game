@@ -1,3 +1,10 @@
+/*
+ * Adventron - Stan Schwertly
+ * I made a game I called "adventron" when I was just learning C/C++
+ * from a For Dummies book. I'm porting it to Java using what I 
+ * know now and what I'm learning. It's still in the early stages from
+ * being ported, so there's some work left to be done.
+ */
 import java.applet.*;
 import java.awt.*;
 
@@ -5,19 +12,12 @@ import java.awt.*;
  * Todo list
  * 
  * - investigate slick2d for graphics
- * - figure out stupid applet stuff
  * - flip bits for movement  rather than +=movement (less clunky)
- * - FIGURE OUT APPLET crap. signed? jars? bs.
+ * - FIGURE OUT APPLET crap. signed? jars?
  * - java enums for all the public static variables? global class?
  * - bullets kill monsters
- * - monsters shoot and move normal and cankill
- * - the worst part about coming back to a porting project is
- *   trying to remember why you included variables. Did I do 
- *   this to stay in line with my old code? Unused variables?
- *   Joel would cry.
- * - replace wall key for walls that are impossible to touch/
- *   vanity (LEE!)
- * - get github account for pretty releases (LEE)
+ * - monsters shoot and move normal and can kill
+ * - replace wall key for walls that are impossible to touch
  */
 public class Adventron extends Applet implements Runnable
 {	
