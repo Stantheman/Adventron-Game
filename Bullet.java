@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 public class Bullet
 {
+	private static final int SPEED = 2;
+	public static final Point UP = new Point(0,-SPEED);
+	public static final Point DOWN =  new Point(0,SPEED);
+	public static final Point LEFT = new Point(-SPEED,0);
+	public static final Point RIGHT =  new Point(SPEED,0);
+	
 	private Point position;
 	private Point direction;
 	private int quadrant;
@@ -11,14 +17,14 @@ public class Bullet
 	public Bullet()
 	{
 		position = new Point();
-		direction = Player.BULLET_UP; //bullet up is default?
+		direction = Bullet.UP; //bullet up is default?
 		determineQuadrant();
 	}
 	
 	public Bullet(int x, int y)
 	{
 		position = new Point(x,y);
-		direction = Player.BULLET_UP;
+		direction = Bullet.UP;
 		determineQuadrant();
 	}
 	
@@ -77,23 +83,23 @@ public class Bullet
 	private void determineQuadrant()
 	{
 		//Is the bullet on the map?
-		if (    (position.x > Map.MAP_WIDTH) ||
+		if (    (position.x > Map.WIDTH) ||
 				(position.x < 0) ||
-				(position.y > Map.MAP_HEIGHT) ||
+				(position.y > Map.HEIGHT) ||
 				(position.y < 0) )
 		{
 			quadrant = Map.OUT_OF_BOUNDS;
 			return;
 		}
 		// Optimize this later by precalculating width/2
-		if (position.x<Map.MAP_WIDTH/2)
+		if (position.x<Map.WIDTH/2)
 		{
-			if (position.y < Map.MAP_HEIGHT/2)
+			if (position.y < Map.HEIGHT/2)
 				quadrant = Map.TOP_LEFT;
 			else
 				quadrant = Map.BOTTOM_LEFT;
 		}
-		else if (position.y < Map.MAP_HEIGHT/2)
+		else if (position.y < Map.HEIGHT/2)
 			quadrant = Map.TOP_RIGHT;
 		else quadrant = Map.BOTTOM_RIGHT;
 	}

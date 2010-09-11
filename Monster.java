@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Monster
 {	
-	public static int MONSTER_HEIGHT=4;
-	public static int MONSTER_WIDTH=4;
+	public static int HEIGHT=4;
+	public static int WIDTH=4;
 	
 	private Point position;
 	private Point direction;
@@ -32,7 +32,7 @@ public class Monster
 		Rectangle temp = new Rectangle(
 				position.x + direction.x, 
 				position.y + direction.y,
-				MONSTER_HEIGHT,MONSTER_WIDTH); 
+				HEIGHT,WIDTH); 
 		
 		for (int i=0; i<map.getWalls(quadrant).size(); i++)
 		{
@@ -67,14 +67,14 @@ public class Monster
 	private void determineQuadrant()
 	{
 		// Optimize this later by precalculating width/2
-		if (position.x<Map.MAP_WIDTH/2)
+		if (position.x<Map.WIDTH/2)
 		{
-			if (position.y < Map.MAP_HEIGHT/2)
+			if (position.y < Map.HEIGHT/2)
 				quadrant = Map.TOP_LEFT;
 			else
 				quadrant = Map.BOTTOM_LEFT;
 		}
-		else if (position.y < Map.MAP_HEIGHT/2)
+		else if (position.y < Map.HEIGHT/2)
 			quadrant = Map.TOP_RIGHT;
 		else quadrant = Map.BOTTOM_RIGHT;
 	}

@@ -12,7 +12,6 @@ import java.awt.*;
  * Todo list
  * 
  * - investigate slick2d for graphics
- * - flip bits for movement  rather than +=movement (less clunky)
  * - java enums for all the public static variables? global class?
  * - bullets kill monsters
  * - monsters shoot and move normal and can kill
@@ -93,17 +92,17 @@ public class Adventron extends Applet implements Runnable
 		
 		g.drawRect(player.getPosition().x, 
 				   player.getPosition().y, 
-				   Player.PLAYER_WIDTH, 
-				   Player.PLAYER_HEIGHT);
+				   Player.WIDTH, 
+				   Player.HEIGHT);
 
 		g.drawRect(m1.getPosition().x,
                    m1.getPosition().y, 
-                   Monster.MONSTER_WIDTH, 
-                   Monster.MONSTER_HEIGHT);
+                   Monster.WIDTH, 
+                   Monster.HEIGHT);
 		g.drawRect(m2.getPosition().x,
                 m2.getPosition().y, 
-                Monster.MONSTER_WIDTH, 
-                Monster.MONSTER_HEIGHT);
+                Monster.WIDTH, 
+                Monster.HEIGHT);
 		
 		//bullet color. static?
 		g.setColor(Color.red);
@@ -147,23 +146,23 @@ public class Adventron extends Applet implements Runnable
 	{
 		if (key == Event.LEFT)
 		{
-			player.setDirection(Player.PLAYER_LEFT);
-			player.setFacing(Player.PLAYER_LEFT);
+			player.setDirection(Player.LEFT);
+			player.setFacing(Player.LEFT);
 		} 
 		else if (key == Event.RIGHT)
 		{
-			player.setDirection(Player.PLAYER_RIGHT);
-			player.setFacing(Player.PLAYER_RIGHT);
+			player.setDirection(Player.RIGHT);
+			player.setFacing(Player.RIGHT);
 		}		
 		else if (key == Event.UP)
 		{
-			player.setDirection(Player.PLAYER_UP);
-			player.setFacing(Player.PLAYER_UP);
+			player.setDirection(Player.UP);
+			player.setFacing(Player.UP);
 		}
 		else if (key == Event.DOWN)
 		{
-			player.setDirection(Player.PLAYER_DOWN);
-			player.setFacing(Player.PLAYER_DOWN);
+			player.setDirection(Player.DOWN);
+			player.setFacing(Player.DOWN);
 		}
 		// user presses space bar
 		if (key == 32)
@@ -181,19 +180,19 @@ public class Adventron extends Applet implements Runnable
 	{
 		if (key == Event.LEFT)
 		{
-			player.setDirection(Player.PLAYER_STILL);
+			player.setDirection(Player.STILL);
 		} 
 		else if (key == Event.RIGHT)
 		{
-			player.setDirection(Player.PLAYER_STILL);
+			player.setDirection(Player.STILL);
 		}		
 		else if (key == Event.UP)
 		{
-			player.setDirection(Player.PLAYER_STILL);
+			player.setDirection(Player.STILL);
 		}
 		else if (key == Event.DOWN)
 		{
-			player.setDirection(Player.PLAYER_STILL);
+			player.setDirection(Player.STILL);
 		}
 
 		return true;

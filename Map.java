@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class Map
 {
-	public static final int MAP_WIDTH = 800;
-    public static final int MAP_HEIGHT = 400;
+	public static final int WIDTH = 800;
+    public static final int HEIGHT = 400;
     
     public static final int TOP_LEFT = 0;
     public static final int TOP_RIGHT =1;
@@ -25,7 +25,7 @@ public class Map
 	public Map()
 	{
 		rows = new String[25];
-		image = new BufferedImage(MAP_WIDTH,MAP_HEIGHT, BufferedImage.TYPE_INT_RGB);
+		image = new BufferedImage(WIDTH,HEIGHT, BufferedImage.TYPE_INT_RGB);
 		
 		walls = new ArrayList[4];
 		for (int i=0; i<4; i++)
@@ -101,14 +101,14 @@ public class Map
 	
 	private int determineQuadrant(int x, int y)
 	{
-		if (x<MAP_WIDTH/2)
+		if (x<WIDTH/2)
 		{
-			if (y < MAP_HEIGHT/2)
+			if (y < HEIGHT/2)
 				return TOP_LEFT;
 			else
 				return BOTTOM_LEFT;
 		}
-		else if (y < MAP_HEIGHT/2)
+		else if (y < HEIGHT/2)
 			return TOP_RIGHT;
 		else return BOTTOM_RIGHT;
 	}
