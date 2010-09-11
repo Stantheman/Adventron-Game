@@ -46,7 +46,7 @@ public class Bullet
 		return position;
 	}
 	
-	public void changePosition(ArrayList <Rectangle>walls, Player player, Monster monster)
+	public void changePosition(ArrayList <Rectangle>walls, Player player, ArrayList <Monster> monsters)
 	{
 		Rectangle newPosition = new Rectangle(
 				position.x + direction.x, 
@@ -54,10 +54,21 @@ public class Bullet
 				WIDTH, HEIGHT); 
 	
 		if (newPosition.intersects(player.getBox()))
-			System.out.println("OUCH WTF THE PLAYER IS HIT");
+		{
+			player.setHit(true);
+			quadrant = Map.OUT_OF_BOUNDS;
+			return;
+		}
 		
-		if (newPosition.intersects(monster.getBox()))
-			System.out.println("TAKE THAT MONSTER!!");
+		for (int i=0; i<monsters.size(); i++)
+		{
+			if (newPosition.intersects(monsters.get(i).getBox()))
+			{
+				monsters.get(i).setHit(true);
+				quadrant = Map.OUT_OF_BOUNDS;
+				return;
+			}
+		}
 		
 		for (int i=0; i<walls.size(); i++)
 		{

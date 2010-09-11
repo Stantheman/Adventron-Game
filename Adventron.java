@@ -25,12 +25,8 @@ public class Adventron extends Applet implements Runnable
 	private Graphics dbg;
 
 	private Player player = new Player();
-	
-	private Monster m1 = new Monster();
-	private Monster m2 = new Monster();
-	
+	private ArrayList <Monster> monsters = new ArrayList<Monster>();
 	private Map map = new Map();
-	
 	private ArrayList <Bullet> bullets = new ArrayList<Bullet>();
 	
 	public void init() 
@@ -44,6 +40,8 @@ public class Adventron extends Applet implements Runnable
 		th.start ();
 		
 		map.readLevel("level0.dat", dbg);
+		monsters.add(new Monster());
+		monsters.add(new Monster());
 	}
 	
 	public void stop() { }
@@ -63,7 +61,7 @@ public class Adventron extends Applet implements Runnable
 			for (int i=0; i<bullets.size(); i++)
 			{
 				int bulletQuad = bullets.get(i).getQuadrant();
-				bullets.get(i).changePosition(map.getWalls(bulletQuad), player, m1);
+				bullets.get(i).changePosition(map.getWalls(bulletQuad), player, monsters);
 				if (bullets.get(i).getQuadrant()==Map.OUT_OF_BOUNDS)
 				{
 					bullets.remove(i);
@@ -72,9 +70,17 @@ public class Adventron extends Applet implements Runnable
 				}
 			}
 			
-			//update the (single for now) monster
-			m1.changePosition(map.getWalls(m1.getQuadrant()));
-			m2.changePosition(map.getWalls(m2.getQuadrant()));
+			for (int i=0; i<monsters.size(); i++)
+			{
+				monsters.get(i).changePosition(
+						map.getWalls(monsters.get(i).getQuadrant()));
+				if (monsters.get(i).isHit())
+				{
+					monsters.remove(i);	
+					i--;
+				}
+			}
+			
 			repaint();
 		
 			try
@@ -99,14 +105,13 @@ public class Adventron extends Applet implements Runnable
 				   Player.WIDTH, 
 				   Player.HEIGHT);
 
-		g.drawRect(m1.getPosition().x,
-                   m1.getPosition().y, 
-                   Monster.WIDTH, 
-                   Monster.HEIGHT);
-		g.drawRect(m2.getPosition().x,
-                m2.getPosition().y, 
-                Monster.WIDTH, 
-                Monster.HEIGHT);
+		for (int i=0; i<monsters.size(); i++)
+		{
+			g.drawRect(monsters.get(i).getPosition().x,
+					monsters.get(i).getPosition().y,
+					Monster.WIDTH,
+					Monster.HEIGHT);
+		}
 		
 		g.setColor(Bullet.COLOR);
 		for (int i=0; i<bullets.size(); i++)
@@ -151,17 +156,17 @@ public class Adventron extends Applet implements Runnable
 			player.setDirection(Player.LEFT);
 			player.setFacing(Player.LEFT);
 		} 
-		else if (key == Event.RIGHT)
+		if (key == Event.RIGHT)
 		{
 			player.setDirection(Player.RIGHT);
 			player.setFacing(Player.RIGHT);
 		}		
-		else if (key == Event.UP)
+		if (key == Event.UP)
 		{
 			player.setDirection(Player.UP);
 			player.setFacing(Player.UP);
 		}
-		else if (key == Event.DOWN)
+		if (key == Event.DOWN)
 		{
 			player.setDirection(Player.DOWN);
 			player.setFacing(Player.DOWN);
@@ -169,10 +174,34 @@ public class Adventron extends Applet implements Runnable
 		// user presses space bar
 		if (key == 32)
 		{
-			bullets.add(new Bullet(
+			if (player.getFacing()==Player.LEFT)
+			{
+				bullets.add(new Bullet(
 					player.getPosition().x,
 					player.getPosition().y,
-					player.getFacing()));
+					Player.LEFT));
+			}
+			else if (player.getFacing()==Player.RIGHT)
+			{
+				bullets.add(new Bullet(
+						player.getPosition().x+player.WIDTH,
+						player.getPosition().y,
+						Player.RIGHT));				
+			}
+			else if (player.getFacing()==Player.UP)
+			{
+				bullets.add(new Bullet(
+						player.getPosition().x,
+						player.getPosition().y,
+						Player.UP));
+			}
+			else 
+			{
+				bullets.add(new Bullet(
+						player.getPosition().x,
+						player.getPosition().y+player.HEIGHT,
+						Player.DOWN));
+			}
 		}
 
 		return true;

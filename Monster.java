@@ -11,6 +11,7 @@ public class Monster
 	private Point direction;;
 	private int quadrant;
 	private Rectangle box;
+	private boolean hit;
 	
 	public Monster()
 	{
@@ -20,6 +21,7 @@ public class Monster
 		direction.setLocation(1,1);
 		box = new Rectangle(position.x, position.y, WIDTH, HEIGHT);
 		determineQuadrant();
+		hit = false;
 	}
 	
 	public Point getPosition()
@@ -92,6 +94,20 @@ public class Monster
 	 */
 	public void setBox(Rectangle box) {
 		this.box = box;
+	}
+
+	/**
+	 * @return the hit
+	 */
+	public boolean isHit() {
+		return hit;
+	}
+
+	/**
+	 * @param hit the hit to set
+	 */
+	public void setHit(boolean hit) {
+		this.hit = hit;
 	}
 
 	private void determineQuadrant()

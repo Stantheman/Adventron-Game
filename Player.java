@@ -24,6 +24,7 @@ public class Player
 	private Point facing;
 	private int quadrant;
 	private Rectangle box;
+	private boolean hit;
 	
 	public Player()
 	{	
@@ -34,6 +35,7 @@ public class Player
 		position.setLocation(100, 100);
 		box = new Rectangle(position.x, position.y,WIDTH, HEIGHT);
 		quadrant = Map.TOP_LEFT;
+		hit=false;
 	}
 	
 	public Point getPosition()
@@ -98,6 +100,20 @@ public class Player
 	 */
 	public void setBox(Rectangle box) {
 		this.box = box;
+	}
+
+	/**
+	 * @return the hit
+	 */
+	public boolean isHit() {
+		return hit;
+	}
+
+	/**
+	 * @param hit the hit to set
+	 */
+	public void setHit(boolean hit) {
+		this.hit = hit;
 	}
 
 	public void move(ArrayList <Rectangle>walls)
