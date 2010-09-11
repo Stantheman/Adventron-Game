@@ -33,6 +33,10 @@ public class Bullet
 		return position;
 	}
 	
+	/*
+	 * This is the slowest function in the game after profiling.
+	 * Need to come up with some better stuff here.
+	 */
 	public void changePosition(Map map)
 	{
 		// check where it's going
