@@ -144,19 +144,19 @@ public class Adventron extends Applet implements Runnable
 	{
 		if (key == Event.LEFT)
 		{
-			player.moveLeft(map);
+			player.setDirection(Player.PLAYER_LEFT);
 		} 
 		else if (key == Event.RIGHT)
 		{
-			player.moveRight(map);
+			player.setDirection(Player.PLAYER_RIGHT);
 		}		
 		else if (key == Event.UP)
 		{
-			player.moveUp(map);
+			player.setDirection(Player.PLAYER_UP);
 		}
 		else if (key == Event.DOWN)
 		{
-			player.moveDown(map);
+			player.setDirection(Player.PLAYER_DOWN);
 		}
 		// user presses space bar
 		if (key == 32)
@@ -166,8 +166,28 @@ public class Adventron extends Applet implements Runnable
 					player.getPosition().y,
 					player.getDirection()));
 		}
-		else
-		{}
+
+		return true;
+	}
+	
+	public boolean keyUp (Event e, int key) 
+	{
+		if (key == Event.LEFT)
+		{
+			player.setDirection(Player.PLAYER_STILL);
+		} 
+		else if (key == Event.RIGHT)
+		{
+			player.setDirection(Player.PLAYER_STILL);
+		}		
+		else if (key == Event.UP)
+		{
+			player.setDirection(Player.PLAYER_STILL);
+		}
+		else if (key == Event.DOWN)
+		{
+			player.setDirection(Player.PLAYER_STILL);
+		}
 
 		return true;
 	}

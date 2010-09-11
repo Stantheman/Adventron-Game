@@ -35,8 +35,7 @@ public class Bullet
 	}
 	
 	/*
-	 * This is the slowest function in the game after profiling.
-	 * Need to come up with some better stuff here.
+	 * This was the slowest feature after profiling. Changing the parameter helps.
 	 */
 	public void changePosition(ArrayList <Rectangle>walls)
 	{

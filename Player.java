@@ -17,6 +17,7 @@ public class Player
 	public static final Point PLAYER_DOWN =  new Point(0,PLAYER_SPEED);
 	public static final Point PLAYER_LEFT = new Point(-PLAYER_SPEED,0);
 	public static final Point PLAYER_RIGHT =  new Point(PLAYER_SPEED,0);
+	public static final Point PLAYER_STILL = new Point(0,0);
 	
 	public static final int PLAYER_HEIGHT =8;
 	public static final int PLAYER_WIDTH=5;
