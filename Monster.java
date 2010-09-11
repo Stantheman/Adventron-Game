@@ -10,6 +10,7 @@ public class Monster
 	private Point position;
 	private Point direction;;
 	private int quadrant;
+	private Rectangle box;
 	
 	public Monster()
 	{
@@ -17,6 +18,7 @@ public class Monster
 		direction = new Point();
 		position.setLocation(1,1);
 		direction.setLocation(1,1);
+		box = new Rectangle(position.x, position.y, WIDTH, HEIGHT);
 		determineQuadrant();
 	}
 	
@@ -49,6 +51,7 @@ public class Monster
 		
 		position.x+=direction.x;
 		position.y+=direction.y;
+		box.setRect(position.x, position.y, WIDTH, HEIGHT);
 		determineQuadrant();
 		if (Math.random()<.5) direction.y*=-1;		
 	}
@@ -75,6 +78,20 @@ public class Monster
 	 */
 	public void setQuadrant(int quadrant) {
 		this.quadrant = quadrant;
+	}
+
+	/**
+	 * @return the box
+	 */
+	public Rectangle getBox() {
+		return box;
+	}
+
+	/**
+	 * @param box the box to set
+	 */
+	public void setBox(Rectangle box) {
+		this.box = box;
 	}
 
 	private void determineQuadrant()

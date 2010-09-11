@@ -63,7 +63,7 @@ public class Adventron extends Applet implements Runnable
 			for (int i=0; i<bullets.size(); i++)
 			{
 				int bulletQuad = bullets.get(i).getQuadrant();
-				bullets.get(i).changePosition(map.getWalls(bulletQuad));
+				bullets.get(i).changePosition(map.getWalls(bulletQuad), player, m1);
 				if (bullets.get(i).getQuadrant()==Map.OUT_OF_BOUNDS)
 				{
 					bullets.remove(i);

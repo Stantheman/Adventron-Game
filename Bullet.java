@@ -46,20 +46,22 @@ public class Bullet
 		return position;
 	}
 	
-	/*
-	 * This was the slowest feature after profiling. Changing the parameter helps.
-	 */
-	public void changePosition(ArrayList <Rectangle>walls)
+	public void changePosition(ArrayList <Rectangle>walls, Player player, Monster monster)
 	{
-		// check where it's going
-		
-		Rectangle temp = new Rectangle(
+		Rectangle newPosition = new Rectangle(
 				position.x + direction.x, 
 				position.y + direction.y,
 				WIDTH, HEIGHT); 
+	
+		if (newPosition.intersects(player.getBox()))
+			System.out.println("OUCH WTF THE PLAYER IS HIT");
+		
+		if (newPosition.intersects(monster.getBox()))
+			System.out.println("TAKE THAT MONSTER!!");
+		
 		for (int i=0; i<walls.size(); i++)
 		{
-			if (temp.intersects(walls.get(i)))
+			if (newPosition.intersects(walls.get(i)))
 			{
 				quadrant = Map.OUT_OF_BOUNDS;
 				return;

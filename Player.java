@@ -23,15 +23,16 @@ public class Player
 	private Point direction;
 	private Point facing;
 	private int quadrant;
+	private Rectangle box;
 	
 	public Player()
 	{	
 		position = new Point();
 		direction = STILL;
-		
 		// Facing determines the bullet's direction. Needs a default position for level loading
 		facing = Player.UP; 
 		position.setLocation(100, 100);
+		box = new Rectangle(position.x, position.y,WIDTH, HEIGHT);
 		quadrant = Map.TOP_LEFT;
 	}
 	
@@ -44,6 +45,7 @@ public class Player
 	{
 		position.x+=direction.x;
 		position.y+=direction.y;
+		box.setRect(position.x, position.y, WIDTH, HEIGHT);
 	}
 	
 	public Point getDirection()
@@ -82,6 +84,20 @@ public class Player
 	 */
 	public void setQuadrant(int quadrant) {
 		this.quadrant = quadrant;
+	}
+
+	/**
+	 * @return the box
+	 */
+	public Rectangle getBox() {
+		return box;
+	}
+
+	/**
+	 * @param box the box to set
+	 */
+	public void setBox(Rectangle box) {
+		this.box = box;
 	}
 
 	public void move(ArrayList <Rectangle>walls)
