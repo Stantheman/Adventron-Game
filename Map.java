@@ -18,6 +18,8 @@ public class Map
     public static final int BOTTOM_RIGHT = 3;
     public static final int OUT_OF_BOUNDS = -1;
     
+    public static final Color WALL_COLOR = Color.yellow;
+    
 	public String[] rows;
 	public BufferedImage image;
 	private ArrayList<Rectangle> walls[];
@@ -44,7 +46,6 @@ public class Map
 		// Read in the level
 		try
 		{
-			//static for now, switching to URL based reading.
 			URL level = new URL("http://mad.eofw.in/levels/" + filename);
 			BufferedReader br = new BufferedReader(new InputStreamReader(level.openStream()));
 			String strLine = br.readLine();
@@ -68,7 +69,7 @@ public class Map
 		
 		// java reminder for me. This creates the background image
 		g = image.createGraphics();
-		g.setColor(Color.yellow);  // wall color. static variable?
+		g.setColor(WALL_COLOR);  
 		
 		// Spacer for walls. Increases as lines of wall continue
 		int spaceBelowScreen = 20;

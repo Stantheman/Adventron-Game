@@ -87,8 +87,7 @@ public class Adventron extends Applet implements Runnable
 	{ 
 		g.drawImage(map.image, 0, 0, null);
 		
-		//player color. static?
-		g.setColor (Color.white);
+		g.setColor (Player.COLOR);
 		
 		g.drawRect(player.getPosition().x, 
 				   player.getPosition().y, 
@@ -104,14 +103,12 @@ public class Adventron extends Applet implements Runnable
                 Monster.WIDTH, 
                 Monster.HEIGHT);
 		
-		//bullet color. static?
-		g.setColor(Color.red);
+		g.setColor(Bullet.COLOR);
 		for (int i=0; i<player.getBullets().size(); i++)
 		{
-			// bullet size should be static?
 			g.drawRect(player.getBullets().get(i).getPosition().x, 
 					   player.getBullets().get(i).getPosition().y, 
-					   1, 1);
+					   Bullet.WIDTH, Bullet.HEIGHT);
 		}
 	}
 	

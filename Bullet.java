@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -10,6 +11,11 @@ public class Bullet
 	public static final Point LEFT = new Point(-SPEED,0);
 	public static final Point RIGHT =  new Point(SPEED,0);
 	
+	public static final int WIDTH = 1;
+	public static final int HEIGHT = 1;
+	
+	public static final Color COLOR = Color.white;
+	
 	private Point position;
 	private Point direction;
 	private int quadrant;
@@ -17,14 +23,14 @@ public class Bullet
 	public Bullet()
 	{
 		position = new Point();
-		direction = Bullet.UP; //bullet up is default?
+		direction = new Point();
 		determineQuadrant();
 	}
 	
 	public Bullet(int x, int y)
 	{
 		position = new Point(x,y);
-		direction = Bullet.UP;
+		direction = UP;
 		determineQuadrant();
 	}
 	

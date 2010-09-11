@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -5,11 +6,15 @@ import java.util.ArrayList;
 public class Player
 {	
 	private static final int SPEED = 5;
+	
+	//directions
 	public static final Point UP = new Point(0,-SPEED);
 	public static final Point DOWN =  new Point(0,SPEED);
 	public static final Point LEFT = new Point(-SPEED,0);
 	public static final Point RIGHT =  new Point(SPEED,0);
 	public static final Point STILL = new Point(0,0);
+	
+	public static final Color COLOR = Color.white;
 	
 	public static final int HEIGHT =8;
 	public static final int WIDTH=5;
@@ -25,7 +30,9 @@ public class Player
 		position = new Point();
 		bullets = new ArrayList<Bullet>();
 		direction = STILL;
-		facing = Player.UP;
+		
+		// Facing determines the bullet's direction. Needs a default position for level loading
+		facing = Player.UP; 
 		position.setLocation(100, 100);
 		quadrant = Map.TOP_LEFT;
 	}
@@ -84,58 +91,6 @@ public class Player
 		changePosition(direction);
 		determineQuadrant();
 	}
-	/*
-	public void moveLeft(Map map)
-	{
-		Rectangle temp = new Rectangle(position.x-SPEED,position.y,WIDTH,HEIGHT);
-		for (int i=0; i<map.getWalls(quadrant).size(); i++)
-		{
-			if (temp.intersects(map.getWalls(quadrant).get(i)))
-				return;
-		}
-		changePosition(new Point(-5,0));
-		setDirection(Bullet.BULLET_LEFT);
-		determineQuadrant();
-	}
-	
-	public void moveRight(Map map)
-	{
-		Rectangle temp = new Rectangle(position.x+SPEED,position.y,WIDTH,HEIGHT);
-		for (int i=0; i<map.getWalls(quadrant).size(); i++)
-		{
-			if (temp.intersects(map.getWalls(quadrant).get(i)))
-				return;
-		}
-		changePosition(new Point(5,0));
-		setDirection(Bullet.BULLET_RIGHT);
-		determineQuadrant();
-	}
-	
-	public void moveUp(Map map)
-	{
-		Rectangle temp = new Rectangle(position.x, position.y-SPEED,WIDTH,HEIGHT);
-		for (int i=0; i<map.getWalls(quadrant).size(); i++)
-		{
-			if (temp.intersects(map.getWalls(quadrant).get(i)))
-				return;
-		}
-		changePosition(new Point(0,-5));
-		setDirection(Bullet.BULLET_UP);
-		determineQuadrant();
-	}
-	
-	public void moveDown(Map map)
-	{
-		Rectangle temp = new Rectangle(position.x,position.y+SPEED,WIDTH,HEIGHT);
-		for (int i=0; i<map.getWalls(quadrant).size(); i++)
-		{
-			if (temp.intersects(map.getWalls(quadrant).get(i)))
-				return;
-		}
-		changePosition(new Point(0,5));
-		setDirection(Bullet.BULLET_DOWN);
-		determineQuadrant();
-	}*/
 	
 	private void determineQuadrant()
 	{
