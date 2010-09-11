@@ -8,15 +8,13 @@ public class Monster
 	public static int WIDTH=4;
 	
 	private Point position;
-	private Point direction;
-	private ArrayList<Bullet> bullets;
+	private Point direction;;
 	private int quadrant;
 	
 	public Monster()
 	{
 		position = new Point();
 		direction = new Point();
-		bullets = new ArrayList<Bullet>();
 		position.setLocation(1,1);
 		direction.setLocation(1,1);
 		determineQuadrant();
@@ -53,11 +51,6 @@ public class Monster
 		position.y+=direction.y;
 		determineQuadrant();
 		if (Math.random()<.5) direction.y*=-1;		
-	}
-	
-	public ArrayList<Bullet> getBullets()
-	{
-		return bullets;
 	}
 	
 	public Point getDirection()

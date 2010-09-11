@@ -7,6 +7,7 @@
  */
 import java.applet.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /*
  * Todo list
@@ -24,9 +25,13 @@ public class Adventron extends Applet implements Runnable
 	private Graphics dbg;
 
 	private Player player = new Player();
+	
 	private Monster m1 = new Monster();
 	private Monster m2 = new Monster();
+	
 	private Map map = new Map();
+	
+	private ArrayList <Bullet> bullets = new ArrayList<Bullet>();
 	
 	public void init() 
 	{ 
@@ -55,13 +60,13 @@ public class Adventron extends Applet implements Runnable
 			// update the player
 			player.move(map.getWalls(player.getQuadrant()));
 			//update the bullets
-			for (int i=0; i<player.getBullets().size(); i++)
+			for (int i=0; i<bullets.size(); i++)
 			{
-				int bulletQuad = player.getBullets().get(i).getQuadrant();
-				player.getBullets().get(i).changePosition(map.getWalls(bulletQuad));
-				if (player.getBullets().get(i).getQuadrant()==Map.OUT_OF_BOUNDS)
+				int bulletQuad = bullets.get(i).getQuadrant();
+				bullets.get(i).changePosition(map.getWalls(bulletQuad));
+				if (bullets.get(i).getQuadrant()==Map.OUT_OF_BOUNDS)
 				{
-					player.getBullets().remove(i);
+					bullets.remove(i);
 					i--;
 					continue;
 				}
@@ -104,10 +109,10 @@ public class Adventron extends Applet implements Runnable
                 Monster.HEIGHT);
 		
 		g.setColor(Bullet.COLOR);
-		for (int i=0; i<player.getBullets().size(); i++)
+		for (int i=0; i<bullets.size(); i++)
 		{
-			g.drawRect(player.getBullets().get(i).getPosition().x, 
-					   player.getBullets().get(i).getPosition().y, 
+			g.drawRect(bullets.get(i).getPosition().x, 
+					   bullets.get(i).getPosition().y, 
 					   Bullet.WIDTH, Bullet.HEIGHT);
 		}
 	}
@@ -164,7 +169,7 @@ public class Adventron extends Applet implements Runnable
 		// user presses space bar
 		if (key == 32)
 		{
-			player.getBullets().add(new Bullet(
+			bullets.add(new Bullet(
 					player.getPosition().x,
 					player.getPosition().y,
 					player.getFacing()));

@@ -20,7 +20,6 @@ public class Player
 	public static final int WIDTH=5;
 	
 	private Point position;
-	private ArrayList<Bullet> bullets; 
 	private Point direction;
 	private Point facing;
 	private int quadrant;
@@ -28,7 +27,6 @@ public class Player
 	public Player()
 	{	
 		position = new Point();
-		bullets = new ArrayList<Bullet>();
 		direction = STILL;
 		
 		// Facing determines the bullet's direction. Needs a default position for level loading
@@ -46,11 +44,6 @@ public class Player
 	{
 		position.x+=direction.x;
 		position.y+=direction.y;
-	}
-	
-	public ArrayList<Bullet> getBullets()
-	{
-		return bullets;
 	}
 	
 	public Point getDirection()
