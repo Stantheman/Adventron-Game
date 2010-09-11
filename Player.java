@@ -25,6 +25,7 @@ public class Player
 	private Point position;
 	private ArrayList<Bullet> bullets; 
 	private Point direction;
+	private Point facing;
 	private int quadrant;
 	
 	public Player()
@@ -32,6 +33,7 @@ public class Player
 		position = new Point();
 		bullets = new ArrayList<Bullet>();
 		direction = Player.BULLET_UP;
+		facing = Player.PLAYER_UP;
 		position.setLocation(100, 100);
 		quadrant = Map.TOP_LEFT;
 	}
@@ -60,6 +62,35 @@ public class Player
 	public void setDirection(Point d)
 	{
 		direction=d;
+	}
+	
+	/**
+	 * @return the facing
+	 */
+	public Point getFacing() {
+		return facing;
+	}
+
+	/**
+	 * @param facing the facing to set
+	 */
+	public void setFacing(Point facing) {
+		this.facing = facing;
+	}
+
+	public void move(Map map)
+	{
+		Rectangle temp = new Rectangle(position.x+direction.x,
+				position.y+direction.y,
+				PLAYER_WIDTH,
+				PLAYER_HEIGHT);
+		for (int i=0; i<map.getWalls(quadrant).size(); i++)
+		{
+			if (temp.intersects(map.getWalls(quadrant).get(i)))
+				return;
+		}
+		changePosition(direction);
+		determineQuadrant();
 	}
 	
 	public void moveLeft(Map map)

@@ -52,6 +52,9 @@ public class Adventron extends Applet implements Runnable
 	
 		while (true)
 		{
+			
+			// update the player
+			player.move(map);
 			//update the bullets
 			for (int i=0; i<player.getBullets().size(); i++)
 			{
@@ -145,18 +148,22 @@ public class Adventron extends Applet implements Runnable
 		if (key == Event.LEFT)
 		{
 			player.setDirection(Player.PLAYER_LEFT);
+			player.setFacing(Player.PLAYER_LEFT);
 		} 
 		else if (key == Event.RIGHT)
 		{
 			player.setDirection(Player.PLAYER_RIGHT);
+			player.setFacing(Player.PLAYER_RIGHT);
 		}		
 		else if (key == Event.UP)
 		{
 			player.setDirection(Player.PLAYER_UP);
+			player.setFacing(Player.PLAYER_UP);
 		}
 		else if (key == Event.DOWN)
 		{
 			player.setDirection(Player.PLAYER_DOWN);
+			player.setFacing(Player.PLAYER_DOWN);
 		}
 		// user presses space bar
 		if (key == 32)
@@ -164,7 +171,7 @@ public class Adventron extends Applet implements Runnable
 			player.getBullets().add(new Bullet(
 					player.getPosition().x,
 					player.getPosition().y,
-					player.getDirection()));
+					player.getFacing()));
 		}
 
 		return true;
