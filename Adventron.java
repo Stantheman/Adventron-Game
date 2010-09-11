@@ -16,7 +16,7 @@ import java.awt.*;
  * - bullets kill monsters
  * - monsters shoot and move normal and can kill
  * - replace wall key for walls that are impossible to touch
- * - profiling shows that collision detection is the worst part
+ * - load levels for new rooms
  */
 public class Adventron extends Applet implements Runnable
 {	

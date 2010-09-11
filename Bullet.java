@@ -56,7 +56,7 @@ public class Bullet
 		Rectangle temp = new Rectangle(
 				position.x + direction.x, 
 				position.y + direction.y,
-				1,1); 
+				WIDTH, HEIGHT); 
 		for (int i=0; i<walls.size(); i++)
 		{
 			if (temp.intersects(walls.get(i)))
