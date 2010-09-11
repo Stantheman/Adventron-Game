@@ -6,7 +6,10 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
+import java.awt.*; 
+import java.applet.Applet;
 
 public class Map
 {
@@ -47,9 +50,9 @@ public class Map
 		// Read in the level
 		try
 		{
-			FileInputStream fstream = new FileInputStream(filename);
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			//static for now, switching to URL based reading.
+			URL level = new URL("http://mad.eofw.in/levels/level0.dat");
+			BufferedReader br = new BufferedReader(new InputStreamReader(level.openStream()));
 			String strLine = br.readLine();
 			int index = 0;
 			
@@ -59,7 +62,7 @@ public class Map
 				index++;
 			}
 			
-			in.close();
+			br.close();
 		}
 		
 		catch (Exception e)
