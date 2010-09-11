@@ -13,11 +13,11 @@ import java.awt.*;
  * 
  * - investigate slick2d for graphics
  * - flip bits for movement  rather than +=movement (less clunky)
- * - FIGURE OUT APPLET crap. signed? jars?
  * - java enums for all the public static variables? global class?
  * - bullets kill monsters
  * - monsters shoot and move normal and can kill
  * - replace wall key for walls that are impossible to touch
+ * - profiling shows that collision detection is the worst part
  */
 public class Adventron extends Applet implements Runnable
 {	
@@ -39,7 +39,7 @@ public class Adventron extends Applet implements Runnable
 		Thread th = new Thread (this);
 		th.start ();
 		
-		map.readLevel("Levels//Level 0.dat", dbg);
+		map.readLevel("level0.dat", dbg);
 	}
 	
 	public void stop() { }

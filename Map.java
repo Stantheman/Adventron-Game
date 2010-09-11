@@ -3,13 +3,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.awt.*; 
-import java.applet.Applet;
 
 public class Map
 {
@@ -24,14 +20,12 @@ public class Map
     
 	public String[] rows;
 	public BufferedImage image;
-	char[][] mapData; //the old dos box was this size?
 	private ArrayList<Rectangle> walls[];
-	
+
 	public Map()
 	{
 		rows = new String[25];
 		image = new BufferedImage(MAP_WIDTH,MAP_HEIGHT, BufferedImage.TYPE_INT_RGB);
-		mapData = new char[80][80];
 		
 		walls = new ArrayList[4];
 		for (int i=0; i<4; i++)
@@ -51,7 +45,7 @@ public class Map
 		try
 		{
 			//static for now, switching to URL based reading.
-			URL level = new URL("http://mad.eofw.in/levels/level0.dat");
+			URL level = new URL("http://mad.eofw.in/levels/" + filename);
 			BufferedReader br = new BufferedReader(new InputStreamReader(level.openStream()));
 			String strLine = br.readLine();
 			int index = 0;
