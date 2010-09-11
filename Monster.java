@@ -27,7 +27,7 @@ public class Monster
 		return position;
 	}
 	
-	public void changePosition(Map map)
+	public void changePosition(ArrayList <Rectangle>walls)
 	{
 		// keep him on the screen
 		if ( ((position.x+direction.x)>Map.WIDTH) || ((position.x+direction.x)<0))
@@ -40,9 +40,9 @@ public class Monster
 				position.y + direction.y,
 				HEIGHT,WIDTH); 
 		
-		for (int i=0; i<map.getWalls(quadrant).size(); i++)
+		for (int i=0; i<walls.size(); i++)
 		{
-			if (temp.intersects(map.getWalls(quadrant).get(i)))
+			if (temp.intersects(walls.get(i)))
 			{
 				direction.setLocation(direction.x*-1, direction.y*-1);
 				break;
@@ -70,6 +70,20 @@ public class Monster
 		direction=d;
 	}
 	
+	/**
+	 * @return the quadrant
+	 */
+	public int getQuadrant() {
+		return quadrant;
+	}
+
+	/**
+	 * @param quadrant the quadrant to set
+	 */
+	public void setQuadrant(int quadrant) {
+		this.quadrant = quadrant;
+	}
+
 	private void determineQuadrant()
 	{
 		// Optimize this later by precalculating width/2

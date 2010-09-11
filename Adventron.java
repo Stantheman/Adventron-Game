@@ -53,7 +53,7 @@ public class Adventron extends Applet implements Runnable
 		{
 			
 			// update the player
-			player.move(map);
+			player.move(map.getWalls(player.getQuadrant()));
 			//update the bullets
 			for (int i=0; i<player.getBullets().size(); i++)
 			{
@@ -68,8 +68,8 @@ public class Adventron extends Applet implements Runnable
 			}
 			
 			//update the (single for now) monster
-			m1.changePosition(map);
-			m2.changePosition(map);
+			m1.changePosition(map.getWalls(m1.getQuadrant()));
+			m2.changePosition(map.getWalls(m2.getQuadrant()));
 			repaint();
 		
 			try

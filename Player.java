@@ -77,15 +77,29 @@ public class Player
 		this.facing = facing;
 	}
 
-	public void move(Map map)
+	/**
+	 * @return the quadrant
+	 */
+	public int getQuadrant() {
+		return quadrant;
+	}
+
+	/**
+	 * @param quadrant the quadrant to set
+	 */
+	public void setQuadrant(int quadrant) {
+		this.quadrant = quadrant;
+	}
+
+	public void move(ArrayList <Rectangle>walls)
 	{
 		Rectangle temp = new Rectangle(position.x+direction.x,
 				position.y+direction.y,
 				WIDTH,
 				HEIGHT);
-		for (int i=0; i<map.getWalls(quadrant).size(); i++)
+		for (int i=0; i<walls.size(); i++)
 		{
-			if (temp.intersects(map.getWalls(quadrant).get(i)))
+			if (temp.intersects(walls.get(i)))
 				return;
 		}
 		changePosition(direction);
