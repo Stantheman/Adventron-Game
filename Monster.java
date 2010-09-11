@@ -29,6 +29,12 @@ public class Monster
 	
 	public void changePosition(Map map)
 	{
+		// keep him on the screen
+		if ( ((position.x+direction.x)>Map.WIDTH) || ((position.x+direction.x)<0))
+			direction.x*=-1;
+		else if ( ((position.y+direction.y)>Map.HEIGHT) || ( (position.y+direction.y)<0))
+			direction.y*=-1;
+		
 		Rectangle temp = new Rectangle(
 				position.x + direction.x, 
 				position.y + direction.y,
@@ -45,8 +51,8 @@ public class Monster
 		
 		position.x+=direction.x;
 		position.y+=direction.y;
-		if (Math.random()<.5) direction.y*=-1;
-		
+		determineQuadrant();
+		if (Math.random()<.5) direction.y*=-1;		
 	}
 	
 	public ArrayList<Bullet> getBullets()

@@ -14,7 +14,7 @@ public class Bullet
 	public static final int WIDTH = 1;
 	public static final int HEIGHT = 1;
 	
-	public static final Color COLOR = Color.white;
+	public static final Color COLOR = Color.red;
 	
 	private Point position;
 	private Point direction;
