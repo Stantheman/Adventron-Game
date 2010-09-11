@@ -1,11 +1,10 @@
 Adventron (the game)
+Stan Schwertly
 ====================
 
-I originally wrote my first graphical game when I was much younger and 
+This is a port of an old game I made, and me getting used to Git. I originally wrote my first graphical game when I was much younger and 
 called it "Adventron." It used the Windows command window and Windows API
-to move ASCII characters around and accept input from a top-down 2D perspective.
-It was written in a mix of beginner's C/C++ and doesn't compile on today's 
-compilers (thank you for the good times, Borland.)
+to move ASCII characters around and accept input from a top-down 2D perspective. It was written in a mix of beginner's C/C++ and doesn't compile on today's compilers (thank you for the good times, Borland.)
 
 This port is in Java and is also my getting used to Git and some of the
 more interesting pieces of Java. I've never ported anything either, so 
