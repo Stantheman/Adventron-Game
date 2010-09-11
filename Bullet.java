@@ -1,5 +1,6 @@
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 public class Bullet
 {
@@ -37,7 +38,7 @@ public class Bullet
 	 * This is the slowest function in the game after profiling.
 	 * Need to come up with some better stuff here.
 	 */
-	public void changePosition(Map map)
+	public void changePosition(ArrayList <Rectangle>walls)
 	{
 		// check where it's going
 		
@@ -45,9 +46,9 @@ public class Bullet
 				position.x + direction.x, 
 				position.y + direction.y,
 				1,1); 
-		for (int i=0; i<map.getWalls(quadrant).size(); i++)
+		for (int i=0; i<walls.size(); i++)
 		{
-			if (temp.intersects(map.getWalls(quadrant).get(i)))
+			if (temp.intersects(walls.get(i)))
 			{
 				quadrant = Map.OUT_OF_BOUNDS;
 				return;
