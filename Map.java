@@ -105,9 +105,21 @@ public class Map
 							walls[tempQuad].get(lastWall[tempQuad]).height);
 					lastWall[tempQuad]++;
 				}
+				else if (rows[i].charAt(j) == '%')
+				{
+					g.drawRect((j*10), spaceBelowScreen, 10, 10);	
+				}
 			}
 			spaceBelowScreen+=10;
 		}
+		int totalWalls=0;
+		for (int i=0; i<4; i++)
+		{
+			System.out.println("The number of walls in walls["+i+"]: " + walls[i].size());
+			totalWalls+=walls[i].size();
+		}
+		System.out.println("Total walls: " + totalWalls);
+		
 	}
 	
 	private int determineQuadrant(int x, int y)
