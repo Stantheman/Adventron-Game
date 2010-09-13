@@ -118,6 +118,12 @@ public class Player
 
 	public void move(ArrayList <Rectangle>walls)
 	{
+		if ( (position.x+WIDTH+direction.x>Map.WIDTH) || 
+				(position.x+direction.x<0) ||
+				(position.y+HEIGHT+direction.y>Map.HEIGHT) || 
+				(position.y+direction.y<0))
+			return;
+		
 		Rectangle temp = new Rectangle(position.x+direction.x,
 				position.y+direction.y,
 				WIDTH,
