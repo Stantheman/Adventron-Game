@@ -33,6 +33,8 @@ public class Player
 	private Rectangle box;
 	
 	private boolean hit;
+	private int health;
+	private int score;
 	
 	public Player()
 	{	
@@ -44,8 +46,12 @@ public class Player
 		facing = UP;
 		box = new Rectangle(position.x, position.y, WIDTH, HEIGHT);
 		quadrant = Map.TOP_LEFT;
-		
+
+		// fighting variables
 		hit = false;
+		health = 3;
+		
+		score = 0;
 	}
 	
 	public Point getPosition()
@@ -124,6 +130,38 @@ public class Player
 	 */
 	public void setHit(boolean hit) {
 		this.hit = hit;
+	}
+
+	/**
+	 * @return the health
+	 */
+	public int getHealth() {
+		return health;
+	}
+
+	/**
+	 * @param health the health to set
+	 */
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	/**
+	 * @return the score
+	 */
+	public int getScore() {
+		return score;
+	}
+
+	/**
+	 * @param score the score to set
+	 */
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	public void addToScore(int add) {
+		this.score += add;
 	}
 
 	public void move(ArrayList <Rectangle>walls)

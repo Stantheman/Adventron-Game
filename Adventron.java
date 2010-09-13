@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * - java enums for all the public static variables? too many static variables!
  * - monsters move normal
  * - load levels for new rooms
- * - score/data bar on top -- move map down ~100 pixels?
+ * - scorebar
  */
 public class Adventron extends Applet implements Runnable
 {	
@@ -77,6 +77,12 @@ public class Adventron extends Applet implements Runnable
 					i--;
 					continue;
 				}
+				
+				if (player.isHit())
+				{
+					player.setHealth(player.getHealth()-1);
+					player.setHit(false);
+				}
 			}
 			
 			// update the monsters
@@ -88,6 +94,7 @@ public class Adventron extends Applet implements Runnable
 				if (monsters.get(i).isHit())
 				{
 					monsters.remove(i);	
+					player.addToScore(100);
 					i--;
 				}
 			}
@@ -114,7 +121,7 @@ public class Adventron extends Applet implements Runnable
 		g.setColor(Player.COLOR);
 		
 		// This is temporary. Player doesn't get drawn if hit
-		if (!player.isHit())
+		if (player.getHealth()>0)
 			g.drawRect(player.getPosition().x, 
 				   player.getPosition().y, 
 				   Player.WIDTH, 
@@ -137,6 +144,10 @@ public class Adventron extends Applet implements Runnable
 					   bullets.get(i).getPosition().y, 
 					   Bullet.WIDTH, Bullet.HEIGHT);
 		}
+		
+		g.setColor(Color.white);
+		g.drawString(new String("Score: " + player.getScore()), 20, 20);
+		g.drawString(new String("Heatlh: " + player.getHealth()), 600, 20);
 	}
 	
 	public void update(Graphics g)
