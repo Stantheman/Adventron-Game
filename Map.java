@@ -102,7 +102,7 @@ public class Map
 				{
 					tempQuad = determineQuadrant((j*10), spaceBelowScreen);
 					walls[tempQuad].add(new Rectangle((j*10), spaceBelowScreen, 10, 10));
-					
+				
 					g.drawRect(
 							walls[tempQuad].get(lastWall[tempQuad]).x, 
 							walls[tempQuad].get(lastWall[tempQuad]).y, 

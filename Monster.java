@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class Monster
 {	
-	public static int HEIGHT = 4;
-	public static int WIDTH = 4;
+	public static int HEIGHT = 10;
+	public static int WIDTH = 8;
 	public static Color COLOR = Color.yellow;
 	
 	private Point position;

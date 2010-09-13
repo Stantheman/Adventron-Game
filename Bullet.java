@@ -20,8 +20,8 @@ public class Bullet
 	public static final Point LEFT = new Point(-SPEED,0);
 	public static final Point RIGHT =  new Point(SPEED,0);
 	
-	public static final int WIDTH = 1;
-	public static final int HEIGHT = 1;
+	public static final int WIDTH = 3;
+	public static final int HEIGHT = 2;
 	
 	public static final Color COLOR = Color.red;
 	

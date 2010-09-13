@@ -122,7 +122,7 @@ public class Adventron extends Applet implements Runnable
 		
 		// This is temporary. Player doesn't get drawn if hit
 		if (player.getHealth()>0)
-			g.drawRect(player.getPosition().x, 
+			g.fillRect(player.getPosition().x, 
 				   player.getPosition().y, 
 				   Player.WIDTH, 
 				   Player.HEIGHT);
@@ -131,7 +131,7 @@ public class Adventron extends Applet implements Runnable
 		g.setColor(Monster.COLOR);
 		for (int i=0; i<monsters.size(); i++)
 		{
-			g.drawRect(monsters.get(i).getPosition().x,
+			g.fillRect(monsters.get(i).getPosition().x,
 					monsters.get(i).getPosition().y,
 					Monster.WIDTH, Monster.HEIGHT);
 		}
@@ -140,7 +140,7 @@ public class Adventron extends Applet implements Runnable
 		g.setColor(Bullet.COLOR);
 		for (int i=0; i<bullets.size(); i++)
 		{
-			g.drawRect(bullets.get(i).getPosition().x, 
+			g.fillRect(bullets.get(i).getPosition().x, 
 					   bullets.get(i).getPosition().y, 
 					   Bullet.WIDTH, Bullet.HEIGHT);
 		}
