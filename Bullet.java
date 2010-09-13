@@ -1,3 +1,10 @@
+/*
+ * Adventron - Stan Schwertly
+ * 
+ * Bullet.java
+ * Represents the bullets shot by both players and monsters
+ */
+
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -6,6 +13,8 @@ import java.util.ArrayList;
 public class Bullet
 {
 	private static final int SPEED = 2;
+	
+	// directions
 	public static final Point UP = new Point(0,-SPEED);
 	public static final Point DOWN =  new Point(0,SPEED);
 	public static final Point LEFT = new Point(-SPEED,0);
@@ -46,6 +55,21 @@ public class Bullet
 		return position;
 	}
 	
+	public Point getDirection()
+	{
+		return direction;
+	}
+	
+	public void setDirection(Point d)
+	{
+		direction = d;
+	}
+	
+	public int getQuadrant()
+	{
+		return quadrant;
+	}
+	
 	public void changePosition(ArrayList <Rectangle>walls, Player player, ArrayList <Monster> monsters)
 	{
 		Rectangle newPosition = new Rectangle(
@@ -53,6 +77,7 @@ public class Bullet
 				position.y + direction.y,
 				WIDTH, HEIGHT); 
 	
+		// If I'm hitting a player, tell him and then get set to die
 		if (newPosition.intersects(player.getBox()))
 		{
 			player.setHit(true);
@@ -60,6 +85,7 @@ public class Bullet
 			return;
 		}
 		
+		// if I hit a monster, tell the monster, then die
 		for (int i=0; i<monsters.size(); i++)
 		{
 			if (newPosition.intersects(monsters.get(i).getBox()))
@@ -70,6 +96,7 @@ public class Bullet
 			}
 		}
 		
+		// if I hit a wall, set my quadrant to die
 		for (int i=0; i<walls.size(); i++)
 		{
 			if (newPosition.intersects(walls.get(i)))
@@ -79,24 +106,10 @@ public class Bullet
 			}
 		}
 		
-		position.x+=direction.x;
-		position.y+=direction.y;
+		// finally: move and figure out where I am
+		position.x += direction.x;
+		position.y += direction.y;
 		determineQuadrant();
-	}
-	
-	public Point getDirection()
-	{
-		return direction;
-	}
-	
-	public void setDirection(Point d)
-	{
-		direction=d;
-	}
-	
-	public int getQuadrant()
-	{
-		return quadrant;
 	}
 	
 	private void determineQuadrant()
@@ -111,7 +124,7 @@ public class Bullet
 			return;
 		}
 		// Optimize this later by precalculating width/2
-		if (position.x<Map.WIDTH/2)
+		if (position.x < Map.WIDTH/2)
 		{
 			if (position.y < Map.HEIGHT/2)
 				quadrant = Map.TOP_LEFT;

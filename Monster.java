@@ -1,26 +1,35 @@
+/*
+ * Adventron - Stan Schwertly
+ * 
+ * Monster.java
+ * Represents the monsters on the map and their functions
+ */
+
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
 public class Monster
 {	
-	public static int HEIGHT=4;
-	public static int WIDTH=4;
+	public static int HEIGHT = 4;
+	public static int WIDTH = 4;
+	public static Color COLOR = Color.yellow;
 	
 	private Point position;
-	private Point direction;;
-	private int quadrant;
+	private Point direction;
 	private Rectangle box;
+	private int quadrant;
+	
 	private boolean hit;
 	
 	public Monster()
 	{
-		position = new Point();
-		direction = new Point();
-		position.setLocation(1,1);
-		direction.setLocation(1,1);
+		position = new Point(1, 1);
+		direction = new Point(1, 1);
 		box = new Rectangle(position.x, position.y, WIDTH, HEIGHT);
 		determineQuadrant();
+		
 		hit = false;
 	}
 	
@@ -29,37 +38,6 @@ public class Monster
 		return position;
 	}
 	
-	public void changePosition(ArrayList <Rectangle>walls, ArrayList <Bullet> bullets)
-	{
-		if (Math.random()<.5) direction.y*=-1;
-		
-		// keep him on the screen
-		if ( ((position.x+direction.x)>Map.WIDTH) || ((position.x+direction.x)<0))
-			direction.x*=-1;
-		else if ( ((position.y+direction.y)>Map.HEIGHT) || ( (position.y+direction.y)<0))
-			direction.y*=-1;
-		
-		Rectangle temp = new Rectangle(
-				position.x + direction.x, 
-				position.y + direction.y,
-				HEIGHT,WIDTH); 
-		
-		for (int i=0; i<walls.size(); i++)
-		{
-			if (temp.intersects(walls.get(i)))
-			{
-				direction.setLocation(direction.x*-1, direction.y*-1);
-				break;
-			}
-		}
-		
-		position.x+=direction.x;
-		position.y+=direction.y;
-		box.setRect(position.x, position.y, WIDTH, HEIGHT);
-		determineQuadrant();		
-		if (Math.random()<.1)
-			bullets.add(new Bullet(position.x, position.y+HEIGHT+1, Player.DOWN));
-	}
 	
 	public Point getDirection()
 	{
@@ -113,10 +91,47 @@ public class Monster
 		this.hit = hit;
 	}
 
+	public void changePosition(ArrayList <Rectangle>walls, ArrayList <Bullet> bullets)
+	{
+		// Temporary. Makes the monster move random.
+		if (Math.random() < .5) direction.y *= -1;
+		
+		// keep him on the screen
+		if ( (position.x + direction.x > Map.WIDTH) || (position.x + direction.x < 0))
+			direction.x *= -1;
+		else if ( (position.y + direction.y > Map.HEIGHT) || (position.y + direction.y < 0))
+			direction.y *= -1;
+		
+		Rectangle temp = new Rectangle(
+				position.x + direction.x, 
+				position.y + direction.y,
+				HEIGHT, WIDTH); 
+		
+		// If he hits a wall, bounce off
+		for (int i=0; i<walls.size(); i++)
+		{
+			if (temp.intersects(walls.get(i)))
+			{
+				direction.setLocation(direction.x * -1, direction.y * -1);
+				break;
+			}
+		}
+		
+		// finally: move, update the box and figure out where he is
+		position.x += direction.x;
+		position.y += direction.y;
+		box.setRect(position.x, position.y, WIDTH, HEIGHT);
+		determineQuadrant();		
+		
+		// temporary. shoot down once in a while
+		if (Math.random() < .1)
+			bullets.add(new Bullet(position.x, position.y + HEIGHT + 1, Player.DOWN));
+	}
+
 	private void determineQuadrant()
 	{
 		// Optimize this later by precalculating width/2
-		if (position.x<Map.WIDTH/2)
+		if (position.x < Map.WIDTH/2)
 		{
 			if (position.y < Map.HEIGHT/2)
 				quadrant = Map.TOP_LEFT;
