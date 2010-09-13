@@ -25,7 +25,8 @@ public class Monster
 	
 	public Monster()
 	{
-		position = new Point(1, 1);
+		// check for walls first
+		position = new Point((int)Math.round(Math.random()*700), (int)Math.round(Math.random()*100));
 		direction = new Point(1, 1);
 		box = new Rectangle(position.x, position.y, WIDTH, HEIGHT);
 		determineQuadrant();

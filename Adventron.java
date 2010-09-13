@@ -18,7 +18,6 @@ import java.util.ArrayList;
  * - investigate slick2d for graphics
  * - java enums for all the public static variables? too many static variables!
  * - monsters move normal
- * - replace wall key for walls that are impossible to touch
  * - load levels for new rooms
  * - score/data bar on top
  */
@@ -45,7 +44,10 @@ public class Adventron extends Applet implements Runnable
 		
 		map.readLevel("level0.dat", dbg);
 		
-		// Temporary. Maps should have monster data?
+		// Temporary. Maps should have monster data? YES
+		monsters.add(new Monster());
+		monsters.add(new Monster());
+		monsters.add(new Monster());
 		monsters.add(new Monster());
 		monsters.add(new Monster());
 	}
