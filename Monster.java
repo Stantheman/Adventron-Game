@@ -29,8 +29,10 @@ public class Monster
 		return position;
 	}
 	
-	public void changePosition(ArrayList <Rectangle>walls)
+	public void changePosition(ArrayList <Rectangle>walls, ArrayList <Bullet> bullets)
 	{
+		if (Math.random()<.5) direction.y*=-1;
+		
 		// keep him on the screen
 		if ( ((position.x+direction.x)>Map.WIDTH) || ((position.x+direction.x)<0))
 			direction.x*=-1;
@@ -54,8 +56,9 @@ public class Monster
 		position.x+=direction.x;
 		position.y+=direction.y;
 		box.setRect(position.x, position.y, WIDTH, HEIGHT);
-		determineQuadrant();
-		if (Math.random()<.5) direction.y*=-1;		
+		determineQuadrant();		
+		if (Math.random()<.1)
+			bullets.add(new Bullet(position.x, position.y+HEIGHT+1, Player.DOWN));
 	}
 	
 	public Point getDirection()

@@ -73,7 +73,7 @@ public class Adventron extends Applet implements Runnable
 			for (int i=0; i<monsters.size(); i++)
 			{
 				monsters.get(i).changePosition(
-						map.getWalls(monsters.get(i).getQuadrant()));
+						map.getWalls(monsters.get(i).getQuadrant()), bullets);
 				if (monsters.get(i).isHit())
 				{
 					monsters.remove(i);	
@@ -100,7 +100,8 @@ public class Adventron extends Applet implements Runnable
 		
 		g.setColor (Player.COLOR);
 		
-		g.drawRect(player.getPosition().x, 
+		if (!player.isHit())
+			g.drawRect(player.getPosition().x, 
 				   player.getPosition().y, 
 				   Player.WIDTH, 
 				   Player.HEIGHT);
