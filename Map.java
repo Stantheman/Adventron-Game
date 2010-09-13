@@ -56,7 +56,7 @@ public class Map
 		// Read in the level
 		try
 		{
-			URL level = new URL("http://mad.eofw.in/levels/" + filename);
+			URL level = new URL("http://projects.schwertly.com/adventron/levels/" + filename);
 			BufferedReader br = new BufferedReader(new InputStreamReader(level.openStream()));
 			String strLine = br.readLine();
 			int index = 0;
