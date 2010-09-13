@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * - java enums for all the public static variables? too many static variables!
  * - monsters move normal
  * - load levels for new rooms
- * - score/data bar on top
+ * - score/data bar on top -- move map down ~100 pixels?
  */
 public class Adventron extends Applet implements Runnable
 {	
