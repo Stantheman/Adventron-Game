@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * TODO list
  * 
  * - investigate slick2d for graphics
- * - java enums for all the public static variables?
+ * - java enums for all the public static variables? too many static variables!
  * - monsters move normal
  * - replace wall key for walls that are impossible to touch
  * - load levels for new rooms
@@ -110,6 +110,7 @@ public class Adventron extends Applet implements Runnable
 		
 		// draw the player
 		g.setColor(Player.COLOR);
+		
 		// This is temporary. Player doesn't get drawn if hit
 		if (!player.isHit())
 			g.drawRect(player.getPosition().x, 

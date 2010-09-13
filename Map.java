@@ -28,7 +28,12 @@ public class Map
     public static final int BOTTOM_RIGHT = 3;
     public static final int OUT_OF_BOUNDS = -1;
     
+    // should there be a wall class? 
     public static final Color WALL_COLOR = Color.white;
+    public static final char WALL = '#';
+    public static final char VANITY_WALL = '%';
+    public static final int WALL_HEIGHT = 10;
+    public static final int WALL_WIDTH = 10;
     
 	public String[] rows;
 	public BufferedImage image;
@@ -93,7 +98,7 @@ public class Map
 		{
 			for (int j=0; j<rows[i].length(); j++)
 			{
-				if (rows[i].charAt(j) == '#')
+				if (rows[i].charAt(j) == WALL)
 				{
 					tempQuad = determineQuadrant((j*10), spaceBelowScreen);
 					walls[tempQuad].add(new Rectangle((j*10), spaceBelowScreen, 10, 10));
@@ -105,9 +110,9 @@ public class Map
 							walls[tempQuad].get(lastWall[tempQuad]).height);
 					lastWall[tempQuad]++;
 				}
-				else if (rows[i].charAt(j) == '%')
+				else if (rows[i].charAt(j) == VANITY_WALL)
 				{
-					g.drawRect((j*10), spaceBelowScreen, 10, 10);	
+					g.drawRect((j*10), spaceBelowScreen, WALL_WIDTH, WALL_HEIGHT);	
 				}
 			}
 			spaceBelowScreen+=10;
@@ -116,14 +121,14 @@ public class Map
 	
 	private int determineQuadrant(int x, int y)
 	{
-		if (x < WIDTH/2)
+		if (x < HALF_WIDTH)
 		{
-			if (y < HEIGHT/2)
+			if (y < HALF_HEIGHT)
 				return TOP_LEFT;
 			else
 				return BOTTOM_LEFT;
 		}
-		else if (y < HEIGHT/2)
+		else if (y < HALF_HEIGHT)
 			return TOP_RIGHT;
 		else return BOTTOM_RIGHT;
 	}
