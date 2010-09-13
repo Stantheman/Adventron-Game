@@ -1,9 +1,13 @@
 /*
- * Adventron.java - Stan Schwertly
+ * Adventron - Stan Schwertly
  * Port of an old game I made. Learning git too!
+ *  
+ * Adventron.java
+ * 
  * http://www.schwertly.com for my blog
  * http://github.com/Stantheman/Adventron-Game for the GitHub
  */
+
 import java.applet.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,10 +16,11 @@ import java.util.ArrayList;
  * TODO list
  * 
  * - investigate slick2d for graphics
- * - java enums for all the public static variables? global class?
- * - monsters shoot and move normal
+ * - java enums for all the public static variables?
+ * - monsters move normal
  * - replace wall key for walls that are impossible to touch
  * - load levels for new rooms
+ * - score/data bar on top
  */
 public class Adventron extends Applet implements Runnable
 {	
@@ -118,8 +123,7 @@ public class Adventron extends Applet implements Runnable
 		{
 			g.drawRect(monsters.get(i).getPosition().x,
 					monsters.get(i).getPosition().y,
-					Monster.WIDTH,
-					Monster.HEIGHT);
+					Monster.WIDTH, Monster.HEIGHT);
 		}
 		
 		// draw the bullets
@@ -186,7 +190,7 @@ public class Adventron extends Applet implements Runnable
 			else if (player.getFacing() == Player.RIGHT)
 			{
 				bullets.add(new Bullet(
-						player.getPosition().x + player.WIDTH,
+						player.getPosition().x + Player.WIDTH,
 						player.getPosition().y,
 						Player.RIGHT));				
 			}
@@ -201,7 +205,7 @@ public class Adventron extends Applet implements Runnable
 			{
 				bullets.add(new Bullet(
 						player.getPosition().x,
-						player.getPosition().y + player.HEIGHT,
+						player.getPosition().y + Player.HEIGHT,
 						Player.DOWN));
 			}
 		}

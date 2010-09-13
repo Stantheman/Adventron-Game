@@ -18,6 +18,8 @@ public class Map
 {
 	public static final int WIDTH = 800;
     public static final int HEIGHT = 400;
+    public static final int HALF_WIDTH = WIDTH/2;
+    public static final int HALF_HEIGHT = HEIGHT/2;
     
     // Quadrants of the map. Used to minimize collision-detection times
     public static final int TOP_LEFT = 0;

@@ -123,15 +123,15 @@ public class Bullet
 			quadrant = Map.OUT_OF_BOUNDS;
 			return;
 		}
-		// Optimize this later by precalculating width/2
-		if (position.x < Map.WIDTH/2)
+		
+		if (position.x < Map.HALF_WIDTH)
 		{
-			if (position.y < Map.HEIGHT/2)
+			if (position.y < Map.HALF_HEIGHT)
 				quadrant = Map.TOP_LEFT;
 			else
 				quadrant = Map.BOTTOM_LEFT;
 		}
-		else if (position.y < Map.HEIGHT/2)
+		else if (position.y < Map.HALF_HEIGHT)
 			quadrant = Map.TOP_RIGHT;
 		else quadrant = Map.BOTTOM_RIGHT;
 	}
