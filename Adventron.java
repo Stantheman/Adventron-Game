@@ -19,7 +19,11 @@ import java.util.ArrayList;
  * - java enums for all the public static variables? too many static variables!
  * - monsters move normal
  * - load levels for new rooms
- * - scorebar
+ * - statusbar
+ * - new problem: when monsters accidentally kill other monsters
+ *   the player gets score points. have an owner flag in the 
+ *   bullet class?
+ * - don't forget about buser in linodeland for java talk!
  */
 public class Adventron extends Applet implements Runnable
 {	
@@ -147,7 +151,7 @@ public class Adventron extends Applet implements Runnable
 		
 		g.setColor(Color.white);
 		g.drawString(new String("Score: " + player.getScore()), 20, 20);
-		g.drawString(new String("Heatlh: " + player.getHealth()), 600, 20);
+		g.drawString(new String("Health: " + player.getHealth()), 600, 20);
 	}
 	
 	public void update(Graphics g)
