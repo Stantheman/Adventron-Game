@@ -52,6 +52,7 @@ public class Adventron extends Applet implements Runnable
 		}
 		
 		player.setMap(map.get(0));
+		Bullet.setMap(map.get(0));
 		
 		// Temporary. Maps should have monster data? YES
 		monsters.add(new Monster());
@@ -81,7 +82,7 @@ public class Adventron extends Applet implements Runnable
 			for (int i=0; i<bullets.size(); i++)
 			{
 				int bulletQuad = bullets.get(i).getQuadrant();
-				bullets.get(i).changePosition(map.get(player.getRoom()).getWalls(bulletQuad), player, monsters);
+				bullets.get(i).changePosition(player, monsters);
 				
 				if (bullets.get(i).getQuadrant() == Map.OUT_OF_BOUNDS)
 				{

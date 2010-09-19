@@ -25,6 +25,8 @@ public class Bullet
 	
 	public static final Color COLOR = Color.red;
 	
+	public static Map map;
+	
 	private Point position;
 	private Point direction;
 	private int quadrant;
@@ -70,7 +72,7 @@ public class Bullet
 		return quadrant;
 	}
 	
-	public void changePosition(ArrayList <Rectangle>walls, Player player, ArrayList <Monster> monsters)
+	public void changePosition(Player player, ArrayList <Monster> monsters)
 	{
 		Rectangle newPosition = new Rectangle(
 				position.x + direction.x, 
@@ -97,9 +99,9 @@ public class Bullet
 		}
 		
 		// if I hit a wall, set my quadrant to die
-		for (int i=0; i<walls.size(); i++)
+		for (int i=0; i<map.getWalls(quadrant).size(); i++)
 		{
-			if (newPosition.intersects(walls.get(i)))
+			if (newPosition.intersects(map.getWalls(quadrant).get(i)))
 			{
 				quadrant = Map.OUT_OF_BOUNDS;
 				return;
@@ -134,5 +136,15 @@ public class Bullet
 		else if (position.y < Map.HALF_HEIGHT)
 			quadrant = Map.TOP_RIGHT;
 		else quadrant = Map.BOTTOM_RIGHT;
+	}
+	
+	public static void setMap(Map m)
+	{
+		map = m;
+	}
+	
+	public static Map getMap()
+	{
+		return map;
 	}
 }
