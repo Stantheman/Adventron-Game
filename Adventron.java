@@ -23,6 +23,7 @@ import java.util.ArrayList;
  * - new problem: when monsters accidentally kill other monsters
  *   the player gets score points. have an owner flag in the 
  *   bullet class?
+ * - there's a collision issue now that i changed the map size
  * - don't forget about buser in linodeland for java talk!
  */
 
@@ -80,6 +81,8 @@ public class Adventron extends Applet implements Runnable
 			{
 				player.setMap(map.get(player.getRoom()));
 				Bullet.setMap(map.get(player.getRoom()));
+				bullets.clear();
+				monsters.clear();
 			}
 			
 			// update the bullets
