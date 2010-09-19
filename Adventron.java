@@ -77,7 +77,10 @@ public class Adventron extends Applet implements Runnable
 		{
 			// update the player
 			if (!player.move())
+			{
 				player.setMap(map.get(player.getRoom()));
+				Bullet.setMap(map.get(player.getRoom()));
+			}
 			
 			// update the bullets
 			for (int i=0; i<bullets.size(); i++)
