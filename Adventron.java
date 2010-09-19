@@ -19,12 +19,13 @@ import java.util.ArrayList;
  * - java enums for all the public static variables? too many static variables!
  * - monsters move normal
  * - load levels for new rooms
- * - statusbar
+ * - [in progress!] statusbar
  * - new problem: when monsters accidentally kill other monsters
  *   the player gets score points. have an owner flag in the 
  *   bullet class?
  * - don't forget about buser in linodeland for java talk!
  */
+
 public class Adventron extends Applet implements Runnable
 {	
 	private Image dbImage;
@@ -32,7 +33,7 @@ public class Adventron extends Applet implements Runnable
 
 	// Game variables
 	private Player player = new Player();
-	private Map map = new Map();
+	private ArrayList <Map> map = new ArrayList<Map>();
 	private ArrayList <Bullet> bullets = new ArrayList<Bullet>();
 	private ArrayList <Monster> monsters = new ArrayList<Monster>();
 	
@@ -43,10 +44,14 @@ public class Adventron extends Applet implements Runnable
 	
 	public void start()
 	{
-		Thread th = new Thread(this);
-		th.start();
+		// read in the first square of levels
+		for (int i=0; i<9; i++)
+		{
+			map.add(new Map());
+			map.get(i).readLevel(new String("level" + i + ".dat"), dbg);
+		}
 		
-		map.readLevel("level0.dat", dbg);
+		player.setMap(map.get(0));
 		
 		// Temporary. Maps should have monster data? YES
 		monsters.add(new Monster());
@@ -54,6 +59,9 @@ public class Adventron extends Applet implements Runnable
 		monsters.add(new Monster());
 		monsters.add(new Monster());
 		monsters.add(new Monster());
+		
+		Thread th = new Thread(this);
+		th.start();
 	}
 	
 	public void stop() { }
@@ -63,17 +71,17 @@ public class Adventron extends Applet implements Runnable
 	public void run() 
 	{
 		Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
-	
+		
 		while (true)
 		{
 			// update the player
-			player.move(map.getWalls(player.getQuadrant()));
+			player.move();
 			
 			// update the bullets
 			for (int i=0; i<bullets.size(); i++)
 			{
 				int bulletQuad = bullets.get(i).getQuadrant();
-				bullets.get(i).changePosition(map.getWalls(bulletQuad), player, monsters);
+				bullets.get(i).changePosition(map.get(player.getRoom()).getWalls(bulletQuad), player, monsters);
 				
 				if (bullets.get(i).getQuadrant() == Map.OUT_OF_BOUNDS)
 				{
@@ -93,7 +101,7 @@ public class Adventron extends Applet implements Runnable
 			for (int i=0; i<monsters.size(); i++)
 			{
 				monsters.get(i).changePosition(
-						map.getWalls(monsters.get(i).getQuadrant()), bullets);
+						map.get(player.getRoom()).getWalls(monsters.get(i).getQuadrant()), bullets);
 				
 				if (monsters.get(i).isHit())
 				{
@@ -119,7 +127,7 @@ public class Adventron extends Applet implements Runnable
 	public void paint(Graphics g) 
 	{ 
 		// draw the walls
-		g.drawImage(map.image, 0, 0, null);
+		g.drawImage(map.get(player.getRoom()).image, 0, 0, null);
 		
 		// draw the player
 		g.setColor(Player.COLOR);

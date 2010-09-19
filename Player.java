@@ -35,6 +35,8 @@ public class Player
 	private boolean hit;
 	private int health;
 	private int score;
+	private int room;
+	private Map map;
 	
 	public Player()
 	{	
@@ -52,6 +54,8 @@ public class Player
 		health = 3;
 		
 		score = 0;
+		room = 0;
+		setMap(new Map());
 	}
 	
 	public Point getPosition()
@@ -164,7 +168,29 @@ public class Player
 		this.score += add;
 	}
 
-	public void move(ArrayList <Rectangle>walls)
+	/**
+	 * @return the room
+	 */
+	public int getRoom() {
+		return room;
+	}
+
+	/**
+	 * @param room the room to set
+	 */
+	public void setRoom(int room) {
+		this.room = room;
+	}
+
+	public void setMap(Map map) {
+		this.map = map;
+	}
+
+	public Map getMap() {
+		return map;
+	}
+
+	public void move()
 	{
 		// Don't let him move out of bounds.
 		if ( (position.x + WIDTH + direction.x > Map.WIDTH) || 
@@ -178,9 +204,9 @@ public class Player
 				WIDTH, HEIGHT);
 		
 		// Don't move if he's going to hit a wall
-		for (int i=0; i<walls.size(); i++)
+		for (int i=0; i<map.getWalls(quadrant).size(); i++)
 		{
-			if (newPosition.intersects(walls.get(i)))
+			if (newPosition.intersects(map.getWalls(quadrant).get(i)))
 				return;
 		}
 		
