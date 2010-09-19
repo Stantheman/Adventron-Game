@@ -68,6 +68,7 @@ public class Adventron extends Applet implements Runnable
 	
 	public void destroy() { }
 	
+	
 	public void run() 
 	{
 		Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
@@ -243,18 +244,13 @@ public class Adventron extends Applet implements Runnable
 	
 	public boolean keyUp(Event e, int key) 
 	{
-		if (key == Event.LEFT)
+		if ( (key == Event.LEFT) || 
+				(key == Event.RIGHT) ||
+				(key == Event.UP) ||
+				(key == Event.DOWN) )
+		{
 			player.setDirection(Player.STILL);
-		
-		else if (key == Event.RIGHT)
-			player.setDirection(Player.STILL);
-		
-		else if (key == Event.UP)
-			player.setDirection(Player.STILL);
-		
-		else if (key == Event.DOWN)
-			player.setDirection(Player.STILL);
-		
+		}
 		return true;
 	}
 }
