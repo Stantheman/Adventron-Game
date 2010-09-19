@@ -38,6 +38,10 @@ public class Adventron extends Applet implements Runnable
 	private ArrayList <Bullet> bullets = new ArrayList<Bullet>();
 	private ArrayList <Monster> monsters = new ArrayList<Monster>();
 	
+	// temporary bar stuff
+	private String bar = new String();
+	private boolean debug = false;
+	
 	public void init() 
 	{ 
 		setBackground(Color.black);
@@ -50,17 +54,17 @@ public class Adventron extends Applet implements Runnable
 		
 		player.setMap(map.get(0));
 		Bullet.setMap(map.get(0));
-	}
-	
-	public void start()
-	{
+		
 		// Temporary. Maps should have monster data? YES
 		monsters.add(new Monster());
 		monsters.add(new Monster());
 		monsters.add(new Monster());
 		monsters.add(new Monster());
 		monsters.add(new Monster());
-		
+	}
+	
+	public void start()
+	{		
 		Thread th = new Thread(this);
 		th.start();
 	}
@@ -165,8 +169,13 @@ public class Adventron extends Applet implements Runnable
 		}
 		
 		g.setColor(Color.white);
-		g.drawString(new String("Score: " + player.getScore()), 20, 20);
-		g.drawString(new String("Health: " + player.getHealth()), 600, 20);
+		bar = "Score: " + player.getScore() + "\t\tHealth: " + player.getHealth();
+		if (debug)
+			bar+="\t\tQuadrant: " + player.getQuadrant() + "\t\t xPos: " + player.getPosition().x + 
+			     "\t\t yPos: " + player.getPosition().y;
+		g.drawString(bar, 20, 20);
+		//g.drawString(new String("Score: " + player.getScore()), 20, 20);
+		//g.drawString(new String("Health: " + player.getHealth()), 600, 20);
 	}
 	
 	public void update(Graphics g)
@@ -241,6 +250,10 @@ public class Adventron extends Applet implements Runnable
 						player.getPosition().y + Player.HEIGHT,
 						Player.DOWN));
 			}
+		}
+		if (key == Event.ENTER)
+		{
+			debug = !debug;
 		}
 		return true;
 	}
