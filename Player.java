@@ -193,11 +193,31 @@ public class Player
 	public void move()
 	{
 		// Don't let him move out of bounds.
-		if ( (position.x + WIDTH + direction.x > Map.WIDTH) || 
+		/*if ( (position.x + WIDTH + direction.x > Map.WIDTH) || 
 				(position.x + direction.x < 0) ||
 				(position.y + HEIGHT + direction.y > Map.HEIGHT) || 
 				(position.y + direction.y < 0))
+			return;*/
+		if (position.x + WIDTH + direction.x > Map.WIDTH)
+		{
+			room--;
 			return;
+		}
+		else if (position.x + direction.x < 0)
+		{
+			room++;
+			return;
+		}
+		else if (position.y + HEIGHT + direction.y > Map.HEIGHT)
+		{
+			room-=3;
+			return;
+		}
+		else if (position.y + direction.y < 0)
+		{
+			room+=3;
+			return;
+		}
 		
 		Rectangle newPosition = new Rectangle(position.x + direction.x,
 				position.y + direction.y,
@@ -213,6 +233,7 @@ public class Player
 		// finally, move and figure out where he is
 		changePosition(direction);
 		determineQuadrant();
+		return;
 	}
 	
 	private void determineQuadrant()
