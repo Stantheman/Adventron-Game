@@ -190,7 +190,7 @@ public class Player
 		return map;
 	}
 
-	public void move()
+	public boolean move()
 	{
 		// Don't let him move out of bounds.
 		/*if ( (position.x + WIDTH + direction.x > Map.WIDTH) || 
@@ -200,23 +200,27 @@ public class Player
 			return;*/
 		if (position.x + WIDTH + direction.x > Map.WIDTH)
 		{
+			position.x=0;
 			room--;
-			return;
+			return false;
 		}
 		else if (position.x + direction.x < 0)
 		{
 			room++;
-			return;
+			position.x=Map.WIDTH-WIDTH;
+			return false;
 		}
 		else if (position.y + HEIGHT + direction.y > Map.HEIGHT)
 		{
 			room-=3;
-			return;
+			position.y=20;
+			return false;
 		}
-		else if (position.y + direction.y < 0)
+		else if (position.y + direction.y < 20)
 		{
 			room+=3;
-			return;
+			position.y=Map.HEIGHT-HEIGHT;
+			return false;
 		}
 		
 		Rectangle newPosition = new Rectangle(position.x + direction.x,
@@ -227,13 +231,13 @@ public class Player
 		for (int i=0; i<map.getWalls(quadrant).size(); i++)
 		{
 			if (newPosition.intersects(map.getWalls(quadrant).get(i)))
-				return;
+				return true;
 		}
 		
 		// finally, move and figure out where he is
 		changePosition(direction);
 		determineQuadrant();
-		return;
+		return true;
 	}
 	
 	private void determineQuadrant()

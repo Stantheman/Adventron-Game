@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Map
 {
 	public static final int WIDTH = 800;
-    public static final int HEIGHT = 400;
+    public static final int HEIGHT = 270;
     public static final int HALF_WIDTH = WIDTH/2;
     public static final int HALF_HEIGHT = HEIGHT/2;
     
