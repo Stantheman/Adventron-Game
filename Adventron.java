@@ -40,11 +40,7 @@ public class Adventron extends Applet implements Runnable
 	public void init() 
 	{ 
 		setBackground(Color.black);
-	}
-	
-	public void start()
-	{
-		// read in the first square of levels
+		
 		for (int i=0; i<9; i++)
 		{
 			map.add(new Map());
@@ -53,7 +49,10 @@ public class Adventron extends Applet implements Runnable
 		
 		player.setMap(map.get(0));
 		Bullet.setMap(map.get(0));
-		
+	}
+	
+	public void start()
+	{
 		// Temporary. Maps should have monster data? YES
 		monsters.add(new Monster());
 		monsters.add(new Monster());
