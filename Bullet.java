@@ -137,7 +137,7 @@ public class Bullet
 		if (    (position.x > Map.WIDTH) ||
 				(position.x < 0) ||
 				(position.y > Map.HEIGHT) ||
-				(position.y < 0) )
+				(position.y < 20) )
 		{
 			quadrant = Map.OUT_OF_BOUNDS;
 			return;

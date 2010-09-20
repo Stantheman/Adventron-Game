@@ -24,6 +24,7 @@ public class Monster
 	private boolean hit;
 	private boolean hitByPlayer;
 	
+	// Maybe phase out/replace with default constructor?
 	public Monster()
 	{
 		// check for walls first

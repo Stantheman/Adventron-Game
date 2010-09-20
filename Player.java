@@ -22,8 +22,8 @@ public class Player
 	
 	public static final Color COLOR = Color.green;
 	
-	public static final int HEIGHT = 8;
-	public static final int WIDTH= 6;
+	public static final int HEIGHT = 10;
+	public static final int WIDTH= 10;
 	
 	private Point position;
 	private Point direction;

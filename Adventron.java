@@ -166,6 +166,10 @@ public class Adventron extends Applet implements Runnable
 		}
 		
 		g.setColor(Color.white);
+		
+		// FOR DEBUGGING, RUN EVERY LOOP:
+		if (bar.isDebug()) bar.updateStatus();
+		
 		g.drawString(bar.toString(), 20, 20);
 	}
 	
