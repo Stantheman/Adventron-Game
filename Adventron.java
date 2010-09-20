@@ -38,11 +38,6 @@ public class Adventron extends Applet implements Runnable
 			map.add(new Map());
 			map.get(i).readLevel(new String("level" + i + ".dat"), dbg);
 		}
-		for (int i =0; i<map.get(0).getMonsterPosition().size(); i++)
-		{
-			System.out.println("Monster["+ i + "]'s x pos: " + map.get(0).getMonsterPosition().get(i).x);
-			System.out.println("Monster["+ i + "]'s x pos: " + map.get(0).getMonsterPosition().get(i).y);
-		}
 		
 		// Give everyone local copies
 		player.setMap(map.get(0));
@@ -50,12 +45,10 @@ public class Adventron extends Applet implements Runnable
 		Bullet.setMap(map.get(0));
 		bar.updateStatus();
 		
-		// Temporary. Maps should have monster data? YES
-		monsters.add(new Monster());
-		monsters.add(new Monster());
-		monsters.add(new Monster());
-		monsters.add(new Monster());
-		monsters.add(new Monster());
+		for (int i=0; i<map.get(0).getMonsterPosition().size(); i++)
+		{
+			monsters.add(new Monster(map.get(0).getMonsterPosition().get(i)));
+		}
 	}
 	
 	public void start()
@@ -244,6 +237,7 @@ public class Adventron extends Applet implements Runnable
 		if (key == Event.ENTER)
 		{
 			bar.switchDebug();
+			bar.updateStatus();
 		}
 		return true;
 	}

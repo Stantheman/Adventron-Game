@@ -34,6 +34,16 @@ public class Monster
 		hit = false;
 	}
 	
+	public Monster(Point p)
+	{
+		position = p;
+		direction = new Point(1, 1);
+		box = new Rectangle(position.x, position.y, WIDTH, HEIGHT);
+		determineQuadrant();
+		
+		hit = false;
+	}
+	
 	public Point getPosition()
 	{
 		return position;
