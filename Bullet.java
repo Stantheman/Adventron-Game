@@ -26,6 +26,7 @@ public class Bullet
 	public static final Color COLOR = Color.red;
 	
 	public static Map map;
+	public static ArrayList<Rectangle> walls[];
 	
 	private Point position;
 	private Point direction;
@@ -141,6 +142,10 @@ public class Bullet
 	public static void setMap(Map m)
 	{
 		map = m;
+		for (int i=0; i<4; i++)
+		{
+			walls[i] = map.getWalls(i);
+		}
 	}
 	
 	public static Map getMap()
