@@ -212,10 +212,10 @@ public class Player
 		else if (position.y + HEIGHT + direction.y > Map.HEIGHT)
 		{
 			room-=3;
-			position.y=20;
+			position.y=Statusbar.Y_START_POSITION;
 			return false;
 		}
-		else if (position.y + direction.y < 20)
+		else if (position.y + direction.y < Statusbar.Y_START_POSITION)
 		{
 			room+=3;
 			position.y=Map.HEIGHT-HEIGHT;

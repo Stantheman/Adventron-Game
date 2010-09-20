@@ -170,7 +170,7 @@ public class Adventron extends Applet implements Runnable
 		// FOR DEBUGGING, RUN EVERY LOOP:
 		if (bar.isDebug()) bar.updateStatus();
 		
-		g.drawString(bar.toString(), 20, 20);
+		g.drawString(bar.toString(), Statusbar.X_START_POSITION, Statusbar.Y_START_POSITION);
 		
 		// debugging?
 		

@@ -8,6 +8,9 @@
  */
 public class Statusbar 
 {
+	public static int X_START_POSITION = 20;
+	public static int Y_START_POSITION = 20;
+	
 	private Player player;
 	private String status;
 	private boolean debug;

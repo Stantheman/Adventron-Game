@@ -122,7 +122,7 @@ public class Monster
 		// keep him on the screen
 		if ( (position.x + direction.x > Map.WIDTH) || (position.x + direction.x < 0))
 			direction.x *= -1;
-		else if ( (position.y + direction.y > Map.HEIGHT) || (position.y + direction.y < 20))
+		else if ( (position.y + direction.y > Map.HEIGHT) || (position.y + direction.y < Statusbar.Y_START_POSITION))
 			direction.y *= -1;
 		
 		Rectangle temp = new Rectangle(

@@ -104,7 +104,7 @@ public class Map
 		g = image.createGraphics();  
 		
 		// Spacer for walls. Increases as lines of wall continue
-		int spaceBelowScreen = 20;
+		int spaceBelowScreen = Statusbar.Y_START_POSITION;
 		int lastWall[] = {0,0,0,0};
 		int tempQuad = 0; // Where will the wall be placed?
 		
