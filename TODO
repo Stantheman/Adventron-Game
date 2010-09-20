@@ -10,8 +10,6 @@ Adventron 1.0:
  * - Monsters move normal. They should also shoot in different directions 
      and intelligently. A*? Pacman AI inspiration. This can be optional, 
      considering the original code.
- * - Monsters accidentally kill other monsters and the player gets score points. 
-     Add an owner flag in the bullet class.
  * - The detection algorithm assumes the new location will be in the same quadrant
      Either check that location's quadrant or hardcode the maps correctly.
  * - Add the boss levels. I don't remember how the player transported, and I 
