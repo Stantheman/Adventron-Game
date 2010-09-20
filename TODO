@@ -7,10 +7,6 @@ being sad about the enjoyment, I need to finish what I started. That said,
 here are the things I can change in Adventron 1.0:
 
 Adventron 1.0:
- * - Update map files to include monster's starting position.
- * - Directional static variables into the map class. SPEED problem!!
-     When an entity is looking up, it's looking up based on the MAP. 
-     Can't move it because it depends on an entity's speed. alternative?
  * - Monsters move normal. They should also shoot in different directions 
      and intelligently. A*? Pacman AI inspiration. This can be optional, 
      considering the original code.

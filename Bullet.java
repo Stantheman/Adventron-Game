@@ -23,7 +23,7 @@ public class Bullet
 	public static final int WIDTH = 3;
 	public static final int HEIGHT = 2;
 	
-	public static final Color COLOR = Color.red;
+	public static final Color COLOR = Color.cyan;
 	
 	public static Map map;
 	public static ArrayList<Rectangle> walls[];

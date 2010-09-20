@@ -78,6 +78,7 @@ public class Adventron extends Applet implements Runnable
 				{
 					monsters.add(new Monster(map.get(player.getRoom()).getMonsterPosition().get(i)));
 				}
+				continue;
 			}
 			
 			// update the bullets
