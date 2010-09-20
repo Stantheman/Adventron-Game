@@ -76,7 +76,7 @@ public class Adventron extends Applet implements Runnable
 				monsters.clear();
 				for (int i=0; i<map.get(player.getRoom()).getMonsterPosition().size(); i++)
 				{
-					monsters.add(new Monster(map.get(0).getMonsterPosition().get(i)));
+					monsters.add(new Monster(map.get(player.getRoom()).getMonsterPosition().get(i)));
 				}
 			}
 			
