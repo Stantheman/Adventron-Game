@@ -31,12 +31,14 @@ public class Bullet
 	private Point position;
 	private Point direction;
 	private int quadrant;
+	private boolean isPlayerBullet;
 	
 	public Bullet()
 	{
 		position = new Point();
 		direction = new Point();
 		determineQuadrant();
+		isPlayerBullet = false;
 	}
 	
 	public Bullet(int x, int y)
@@ -44,6 +46,7 @@ public class Bullet
 		position = new Point(x,y);
 		direction = UP;
 		determineQuadrant();
+		isPlayerBullet = false;
 	}
 	
 	public Bullet(int x, int y, Point d)
@@ -51,6 +54,15 @@ public class Bullet
 		position = new Point(x,y);
 		direction = d;
 		determineQuadrant();
+		isPlayerBullet = false;
+	}
+	
+	public Bullet(int x, int y, Point d, boolean ipb)
+	{
+		position = new Point(x,y);
+		direction = d;
+		determineQuadrant();
+		isPlayerBullet = ipb;
 	}
 	
 	public Point getPosition()
@@ -153,6 +165,14 @@ public class Bullet
 		return map;
 	}
 	
+	public void setPlayerBullet(boolean isPlayerBullet) {
+		this.isPlayerBullet = isPlayerBullet;
+	}
+
+	public boolean isPlayerBullet() {
+		return isPlayerBullet;
+	}
+
 	public static void initWalls()
 	{
 		walls = new ArrayList[4];

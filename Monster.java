@@ -22,6 +22,7 @@ public class Monster
 	private int quadrant;
 	
 	private boolean hit;
+	private boolean hitByPlayer;
 	
 	public Monster()
 	{
@@ -32,6 +33,7 @@ public class Monster
 		determineQuadrant();
 		
 		hit = false;
+		hitByPlayer = false;
 	}
 	
 	public Monster(Point p)
@@ -42,6 +44,7 @@ public class Monster
 		determineQuadrant();
 		
 		hit = false;
+		hitByPlayer = false;
 	}
 	
 	public Point getPosition()
@@ -100,6 +103,14 @@ public class Monster
 	 */
 	public void setHit(boolean hit) {
 		this.hit = hit;
+	}
+
+	public void setHitByPlayer(boolean hitByPlayer) {
+		this.hitByPlayer = hitByPlayer;
+	}
+
+	public boolean isHitByPlayer() {
+		return hitByPlayer;
 	}
 
 	public void changePosition(ArrayList <Rectangle>walls, ArrayList <Bullet> bullets)

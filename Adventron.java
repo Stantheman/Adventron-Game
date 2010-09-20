@@ -88,16 +88,17 @@ public class Adventron extends Applet implements Runnable
 				
 				if (bullets.get(i).getQuadrant() == Map.OUT_OF_BOUNDS)
 				{
+					if (player.isHit()) 
+					{
+						if (!bullets.get(i).isPlayerBullet())
+							player.setHealth(player.getHealth()-1);
+						
+						player.setHit(false);
+					}
+					bar.updateStatus();
 					bullets.remove(i);
 					i--;
 					continue;
-				}
-				
-				if (player.isHit())
-				{
-					player.setHealth(player.getHealth()-1);
-					player.setHit(false);
-					bar.updateStatus();
 				}
 			}
 			
@@ -215,28 +216,28 @@ public class Adventron extends Applet implements Runnable
 				bullets.add(new Bullet(
 					player.getPosition().x,
 					player.getPosition().y,
-					Player.LEFT));
+					Player.LEFT, true));
 			}
 			else if (player.getFacing() == Player.RIGHT)
 			{
 				bullets.add(new Bullet(
 						player.getPosition().x + Player.WIDTH,
 						player.getPosition().y,
-						Player.RIGHT));				
+						Player.RIGHT, true));				
 			}
 			else if (player.getFacing() == Player.UP)
 			{
 				bullets.add(new Bullet(
 						player.getPosition().x,
 						player.getPosition().y,
-						Player.UP));
+						Player.UP, true));
 			}
 			else 
 			{
 				bullets.add(new Bullet(
 						player.getPosition().x,
 						player.getPosition().y + Player.HEIGHT,
-						Player.DOWN));
+						Player.DOWN, true));
 			}
 		}
 		if (key == Event.ENTER)
