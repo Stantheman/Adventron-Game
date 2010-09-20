@@ -74,6 +74,10 @@ public class Adventron extends Applet implements Runnable
 				Bullet.setMap(map.get(player.getRoom()));
 				bullets.clear();
 				monsters.clear();
+				for (int i=0; i<map.get(player.getRoom()).getMonsterPosition().size(); i++)
+				{
+					monsters.add(new Monster(map.get(0).getMonsterPosition().get(i)));
+				}
 			}
 			
 			// update the bullets
