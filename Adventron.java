@@ -121,12 +121,13 @@ public class Adventron extends Applet implements Runnable
 			
 			repaint();
 		
-			/*try
+			try
 			{
 				Thread.sleep(20);
 			}
 			catch (InterruptedException ex)
-			{}*/
+			{
+			}
 
 			Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 		}
