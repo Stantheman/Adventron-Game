@@ -100,9 +100,9 @@ public class Bullet
 		}
 		
 		// if I hit a wall, set my quadrant to die
-		for (int i=0; i<map.getWalls(quadrant).size(); i++)
+		for (int i=0; i<walls[quadrant].size(); i++)
 		{
-			if (newPosition.intersects(map.getWalls(quadrant).get(i)))
+			if (newPosition.intersects(walls[quadrant].get(i)))
 			{
 				quadrant = Map.OUT_OF_BOUNDS;
 				return;
@@ -151,5 +151,14 @@ public class Bullet
 	public static Map getMap()
 	{
 		return map;
+	}
+	
+	public static void initWalls()
+	{
+		walls = new ArrayList[4];
+		for (int i=0; i<4; i++)
+		{
+			walls[i] = new ArrayList<Rectangle>();
+		}
 	}
 }

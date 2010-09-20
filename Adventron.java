@@ -54,6 +54,7 @@ public class Adventron extends Applet implements Runnable
 		}
 		
 		player.setMap(map.get(0));
+		Bullet.initWalls();
 		Bullet.setMap(map.get(0));
 		
 		// Temporary. Maps should have monster data? YES
