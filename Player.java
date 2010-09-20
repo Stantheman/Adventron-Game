@@ -20,7 +20,7 @@ public class Player
 	public static final Point RIGHT =  new Point(SPEED,0);
 	public static final Point STILL = new Point(0,0);
 	
-	public static final Color COLOR = Color.green;
+	public static Color COLOR = Color.green;
 	
 	public static final int HEIGHT = 10;
 	public static final int WIDTH= 10;

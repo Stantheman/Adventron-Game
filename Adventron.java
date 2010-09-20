@@ -91,7 +91,11 @@ public class Adventron extends Applet implements Runnable
 					if (player.isHit()) 
 					{
 						if (!bullets.get(i).isPlayerBullet())
+						{
 							player.setHealth(player.getHealth()-1);
+							if (player.getHealth()==1)
+								Player.COLOR = Color.RED;
+						}
 						
 						player.setHit(false);
 					}
