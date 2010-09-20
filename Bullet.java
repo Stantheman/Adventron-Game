@@ -106,6 +106,10 @@ public class Bullet
 			if (newPosition.intersects(monsters.get(i).getBox()))
 			{
 				monsters.get(i).setHit(true);
+				
+				if (isPlayerBullet)
+					monsters.get(i).setHitByPlayer(true);
+				
 				quadrant = Map.OUT_OF_BOUNDS;
 				return;
 			}

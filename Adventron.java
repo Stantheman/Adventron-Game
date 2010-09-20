@@ -110,8 +110,10 @@ public class Adventron extends Applet implements Runnable
 				
 				if (monsters.get(i).isHit())
 				{
+					if (monsters.get(i).isHitByPlayer())
+						player.addToScore(100);
+					
 					monsters.remove(i);	
-					player.addToScore(100);
 					bar.updateStatus();
 					i--;
 				}
