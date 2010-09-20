@@ -38,6 +38,11 @@ public class Adventron extends Applet implements Runnable
 			map.add(new Map());
 			map.get(i).readLevel(new String("level" + i + ".dat"), dbg);
 		}
+		for (int i =0; i<map.get(0).getMonsterPosition().size(); i++)
+		{
+			System.out.println("Monster["+ i + "]'s x pos: " + map.get(0).getMonsterPosition().get(i).x);
+			System.out.println("Monster["+ i + "]'s x pos: " + map.get(0).getMonsterPosition().get(i).y);
+		}
 		
 		// Give everyone local copies
 		player.setMap(map.get(0));

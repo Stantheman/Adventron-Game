@@ -7,6 +7,7 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -35,10 +36,11 @@ public class Map
     public static final int WALL_HEIGHT = 10;
     public static final int WALL_WIDTH = 10;
     
-	public String[] rows;
+	private String[] rows;
 	public BufferedImage image;
 	private ArrayList<Rectangle> walls[];
-
+	private ArrayList<Point> monsterPosition; 
+	
 	public Map()
 	{
 		rows = new String[25];
@@ -49,6 +51,8 @@ public class Map
 		{
 			walls[i] = new ArrayList<Rectangle>();
 		}
+		
+		monsterPosition = new ArrayList<Point>();
 	}
 	
 	public ArrayList<Rectangle> getWalls(int whichWall)
@@ -56,6 +60,20 @@ public class Map
 		return walls[whichWall];
 	}
 	
+	/**
+	 * @return the monsterPosition
+	 */
+	public ArrayList<Point> getMonsterPosition() {
+		return monsterPosition;
+	}
+
+	/**
+	 * @param monsterPosition the monsterPosition to set
+	 */
+	public void setMonsterPosition(ArrayList<Point> monsterPosition) {
+		this.monsterPosition = monsterPosition;
+	}
+
 	public void readLevel(String filename, Graphics g)
 	{
 		// Read in the level
@@ -117,7 +135,8 @@ public class Map
 				}
 				else if (rows[i].charAt(j) == '!')
 				{
-					g.setColor(Color.red);
+					monsterPosition.add(new Point((j*10), spaceBelowScreen));
+					g.setColor(Color.DARK_GRAY);
 					g.fillRect((j*10), spaceBelowScreen, WALL_WIDTH, WALL_HEIGHT);
 				}
 				else 
