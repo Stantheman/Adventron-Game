@@ -115,6 +115,11 @@ public class Map
 					g.setColor(Color.DARK_GRAY);
 					g.drawRect((j*10), spaceBelowScreen, WALL_WIDTH, WALL_HEIGHT);	
 				}
+				else if (rows[i].charAt(j) == '!')
+				{
+					g.setColor(Color.red);
+					g.fillRect((j*10), spaceBelowScreen, WALL_WIDTH, WALL_HEIGHT);
+				}
 				else 
 				{
 					g.setColor(Color.DARK_GRAY);
