@@ -54,7 +54,7 @@ public class Statusbar
 		status = "Score: " + player.getScore() + "\t\tHealth: " + player.getHealth();
 		if (debug)
 			status+="\t\tQuadrant: " + player.getQuadrant() + "\t\t xPos: " + player.getPosition().x + 
-			     "\t\t yPos: " + player.getPosition().y ;
+			     "\t\t yPos: " + player.getPosition().y + "\t\t Room #: " + player.getRoom();
 	}
 	
 }

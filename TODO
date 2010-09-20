@@ -12,11 +12,10 @@ Adventron 1.0:
      considering the original code.
  * - The detection algorithm assumes the new location will be in the same quadrant
      Either check that location's quadrant or hardcode the maps correctly.
+     Problem maps: 0, 3, 5, 6, 7
  * - Add the boss levels. I don't remember how the player transported, and I 
      /do/ remember the boss levels being the result of a lot of hackery.
- * - Make a level debug mode to fix the levels easier.
- * - Exception occurs if bullet is shot when player or monster is on the edge
-     of the map.
+ * - Make a level debug mode to fix the levels easier. Add gridlines!
  * - There's a value of 20 pixels down for the status bar that should be a 
      static variable
  * - The visible map is 260 pixels far down and should be noted.

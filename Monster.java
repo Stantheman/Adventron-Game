@@ -147,7 +147,7 @@ public class Monster
 		determineQuadrant();		
 		
 		// temporary. shoot down once in a while
-		if (Math.random() < .1)
+		if ( (Math.random() < .1) && (position.y+HEIGHT+1<Map.HEIGHT) )
 			bullets.add(new Bullet(position.x, position.y + HEIGHT + 1, Player.DOWN));
 	}
 

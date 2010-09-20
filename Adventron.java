@@ -171,6 +171,15 @@ public class Adventron extends Applet implements Runnable
 		if (bar.isDebug()) bar.updateStatus();
 		
 		g.drawString(bar.toString(), 20, 20);
+		
+		// debugging?
+		
+		if (bar.isDebug())
+		{
+			g.setColor(Color.MAGENTA);
+			g.drawLine(0, Map.HALF_HEIGHT, Map.WIDTH, Map.HALF_HEIGHT);
+			g.drawLine(Map.HALF_WIDTH, 0, Map.HALF_WIDTH, Map.HEIGHT);
+		}
 	}
 	
 	public void update(Graphics g)
