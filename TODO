@@ -1,0 +1,31 @@
+TODO
+
+The major idea to keep above all todo items is that Adventron is a PORT.
+I need to focus on finishing the game as it was before thinking of the 
+cool things I could change to make it fun. Before going hog-wild and 
+being sad about the enjoyment, I need to finish what I started. That said, 
+here are the things I can change in Adventron 1.0:
+
+Adventron 1.0:
+ * - Consider moving the directional static variables into the map class. 
+     When an entity is looking up, it's looking up based on the MAP. 
+ * - Monsters move normal. They should also shoot in different directions 
+     and intelligently. A*? Pacman AI inspiration. This can be optional, 
+     considering the original code.
+ * - Monsters should be specified inside the map file. Optional, but better.
+ * - Monsters accidentally kill other monsters and the player gets score points. 
+     Add an owner flag in the bullet class.
+ * - The detection algorithm assumes the new location will be in the same quadrant
+     Either check that location's quadrant or hardcode the maps correctly.
+ * - Add the boss levels. I don't remember how the player transported, and I 
+     /do/ remember the boss levels being the result of a lot of hackery.
+ * - Make a level debug mode to fix the levels easier.
+ 
+ Adventron 2.0
+ * - Recode everything to be stateful and more object-oriented. I used 
+     to be conservative making new files, but it makes more sense logically.
+ * - More weapons!
+ * - Monster-generating squares specified in the level file.
+ * - More levels!
+ 
+ 
