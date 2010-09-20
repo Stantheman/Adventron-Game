@@ -27,5 +27,5 @@ Adventron 1.0:
  * - More weapons!
  * - Monster-generating squares specified in the level file.
  * - More levels!
- 
- 
+ * - Slick2D or another opengl-based graphics library?
+ * - Look for a better input method?

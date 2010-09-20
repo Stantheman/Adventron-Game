@@ -13,18 +13,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /*
- * TODO list
- * 
- * - investigate slick2d for graphics
- * - java enums for all the public static variables? too many static variables!
- * - monsters move normal
- * - [in progress!] statusbar
- * - new problem: when monsters accidentally kill other monsters
- *   the player gets score points. have an owner flag in the 
- *   bullet class?
- * - there's a collision issue now:
- *   The detection algorithm assumes the new location will be in the same quadrant
- *   I can either check that location's quadrant or hardcode the maps correctly
  * - don't forget about buser in linodeland for java talk!
  */
 
