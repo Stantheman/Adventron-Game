@@ -83,8 +83,7 @@ public class Map
 		// Level is read. process it.
 		
 		// java reminder for me. This creates the background image
-		g = image.createGraphics();
-		g.setColor(WALL_COLOR);  
+		g = image.createGraphics();  
 		
 		// Spacer for walls. Increases as lines of wall continue
 		int spaceBelowScreen = 20;
@@ -100,6 +99,7 @@ public class Map
 			{
 				if (rows[i].charAt(j) == WALL)
 				{
+					g.setColor(WALL_COLOR);
 					tempQuad = determineQuadrant((j*10), spaceBelowScreen);
 					walls[tempQuad].add(new Rectangle((j*10), spaceBelowScreen, 10, 10));
 				
@@ -112,7 +112,13 @@ public class Map
 				}
 				else if (rows[i].charAt(j) == VANITY_WALL)
 				{
+					g.setColor(Color.DARK_GRAY);
 					g.drawRect((j*10), spaceBelowScreen, WALL_WIDTH, WALL_HEIGHT);	
+				}
+				else 
+				{
+					g.setColor(Color.DARK_GRAY);
+					g.fillRect((j*10), spaceBelowScreen, WALL_WIDTH, WALL_HEIGHT);
 				}
 			}
 			spaceBelowScreen+=10;

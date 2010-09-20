@@ -47,12 +47,14 @@ public class Adventron extends Applet implements Runnable
 	{ 
 		setBackground(Color.black);
 		
+		// Suck in the levels
 		for (int i=0; i<9; i++)
 		{
 			map.add(new Map());
 			map.get(i).readLevel(new String("level" + i + ".dat"), dbg);
 		}
 		
+		// Give everyone local copies
 		player.setMap(map.get(0));
 		Bullet.initWalls();
 		Bullet.setMap(map.get(0));
@@ -74,7 +76,6 @@ public class Adventron extends Applet implements Runnable
 	public void stop() { }
 	
 	public void destroy() { }
-	
 	
 	public void run() 
 	{
@@ -174,10 +175,8 @@ public class Adventron extends Applet implements Runnable
 		bar = "Score: " + player.getScore() + "\t\tHealth: " + player.getHealth();
 		if (debug)
 			bar+="\t\tQuadrant: " + player.getQuadrant() + "\t\t xPos: " + player.getPosition().x + 
-			     "\t\t yPos: " + player.getPosition().y;
+			     "\t\t yPos: " + player.getPosition().y + "\t\t # of Bullets: " + bullets.size();
 		g.drawString(bar, 20, 20);
-		//g.drawString(new String("Score: " + player.getScore()), 20, 20);
-		//g.drawString(new String("Health: " + player.getHealth()), 600, 20);
 	}
 	
 	public void update(Graphics g)
